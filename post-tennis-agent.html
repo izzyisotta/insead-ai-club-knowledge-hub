@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Real tennis booking agent — Freddie Chambers</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="theme.js"></script>
+<script src="saves.js"></script>
+</head>
+<body>
+
+<div class="demo-banner">Mockup <span>Clickable demo, nothing here is live yet</span></div>
+
+<header class="site">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      INSEAD AI Club Knowledge Hub
+    </a>
+    <nav>
+      <a href="index.html" class="active">Feed</a>
+      <a href="people.html">People</a>
+      <a href="saved.html">Saved</a>
+      <a href="new-post.html">Submit</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" aria-label="Search">⌕</button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme">☾</button>
+      <a href="login.html" class="btn btn-text">Sign in</a>
+      <a href="new-post.html" class="btn btn-primary">Share something</a>
+    </div>
+  </div>
+</header>
+
+<main class="narrow">
+
+  <div class="breadcrumb"><a href="index.html">Feed</a><span class="sep">/</span><a href="#">Building Apps</a><span class="sep">/</span>Real tennis booking agent</div>
+
+  <header class="post-page-header">
+    <span class="category-eyebrow"><span class="dot" style="background: var(--cat-apps);"></span>Building Apps · How-to</span>
+    <h1>I built an agent to book real tennis courts in Fontainebleau</h1>
+
+    <div class="byline">
+      <span class="avatar">FC</span>
+      <span class="author-name"><a href="people-freddie.html">Freddie Chambers</a></span>
+      <span class="meta-sep">·</span>
+      <span>26 April 2026</span>
+      <span class="meta-sep">·</span>
+      <span>4 min read</span>
+    </div>
+
+    <div class="hashtag-row">
+      <a href="#">#agents</a>
+      <a href="#">#playwright</a>
+      <a href="#">#real-tennis</a>
+      <a href="#">#telegram</a>
+    </div>
+
+    <a href="https://freddiecaspian.github.io/ticketing-explainer/tennis.html" class="attachment-pill">↗ live writeup · freddiecaspian.github.io/ticketing-explainer/tennis.html</a>
+    <button class="save-btn-text" data-slug="post-tennis-agent" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><span class="save-label">Save</span></button>
+  </header>
+
+  <article class="post-body">
+    <p>Quick share on this one. Lots of chatter about agentic stuff at the moment and tbh I'm not ready to hand over my whole keychain just yet. But I do think the sweet spot right now is the slightly fiddly, repetitive flows you do over and over again — those are where the agents earn their keep.</p>
+
+    <p>So I built one to book me real tennis courts with pals in Fontainebleau. Finding slots is just a faff waste of time.</p>
+
+    <h2>What it does</h2>
+    <p>I type into Telegram: "Tennis with Adrien Harnay" and hit send. About two minutes later my Telegram buzzes back: <em>Here are the top 5 slots with Adrien over the next 3 weeks…</em></p>
+
+    <p>Pick one, agent confirms, slot booked, calendar invites sent. Done.</p>
+
+    <h2>How specific is the workflow</h2>
+    <p>Deliberately narrow. Hardcoded auth, a single site (realtennisonline.com), and a handful of inputs (friend, time window, court pref). Claude isn't <em>deciding</em> much — it's just doing the boring fetch + filter + cross-ref against my calendar that I'd otherwise do manually.</p>
+
+    <h2>The pieces</h2>
+    <ol>
+      <li><strong>Trigger:</strong> Telegram bot listens for natural-language requests</li>
+      <li><strong>Parser:</strong> Claude turns the message into structured params (friend, window, court)</li>
+      <li><strong>Fetcher:</strong> Playwright logs into realtennisonline.com with stored auth, scrapes available slots</li>
+      <li><strong>Filter:</strong> Cross-reference with my Google Calendar and the friend's calendar (if shared)</li>
+      <li><strong>Surface:</strong> Top 5 slots back via Telegram, formatted as buttons</li>
+      <li><strong>Confirm:</strong> User picks one, agent books it, sends calendar invites</li>
+    </ol>
+
+    <h2>Why I haven't gone broader</h2>
+    <p>I haven't given broad security access to an open agent / paperclip thing — not ready for the mad agentic unproven workflows. But I'm sure I will soon.</p>
+
+    <p>The composition is the point. Tennis booking isn't Playwright <em>or</em> Calendar <em>or</em> CRM <em>or</em> drafting — it's all four stitched together in 90 seconds. Each capability is ordinary. The combination is what makes it feel different.</p>
+
+    <h2>Where it'd break</h2>
+    <ul>
+      <li><strong>Site changes selectors</strong> — Playwright will fail. The fix is making the agent read the page's accessibility tree first and pick selectors at runtime, but that adds 30s to every booking.</li>
+      <li><strong>Auth expires</strong> — fall-back is a manual login prompt via Telegram. Not seamless but works.</li>
+      <li><strong>Calendar sharing</strong> — most friends haven't actually shared their calendars with me, so cross-ref only works against my own.</li>
+    </ul>
+
+    <p>Visual writeup: <a href="https://freddiecaspian.github.io/ticketing-explainer/tennis.html">freddiecaspian.github.io/ticketing-explainer/tennis.html</a>. Enjoy x</p>
+  </article>
+
+  <section class="comments">
+    <h3>10 comments</h3>
+
+    <div class="comment">
+      <span class="avatar">LB</span>
+      <div class="body">
+        <div class="head"><span class="name">Luke Baines</span><span class="time">26 Apr · 10:14</span></div>
+        <p>Very neat. How specific have you been with this workflow in setting it up vs how much has it made the flow up itself? Feels very detailed.</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">26 Apr · 11:48</span></div>
+        <p>Yeah pretty much hardcoded — this one's deliberately narrow. Hardcoded auth, a single site (realtennisonline.com), and a handful of inputs. Claude's not "deciding" much, it's just doing the boring fetch + filter + cross-ref against my calendar that I'd otherwise do manually.</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">26 Apr · 11:51</span></div>
+        <p>ngl the calendar cross-ref bit took me ages but holy balls the moment it actually worked. best thing ive built since the voice notes setup if i say so myself</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">II</span>
+      <div class="body">
+        <div class="head"><span class="name">Isabella Isotta</span><span class="time">26 Apr · 12:19</span></div>
+        <p>this is the RIGHT scope. ppl in section keep telling me they're "building an agent" w the energy of someone strapping into skis for the first time. narrow + reliable &gt; broad + flaky every single time</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">TR</span>
+      <div class="body">
+        <div class="head"><span class="name">Tom Rees</span><span class="time">26 Apr · 14:11</span></div>
+        <p>is anyone else finding that opus 4.6 is still performing better for them than 4.7</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">26 Apr · 14:18</span></div>
+        <p>tom this isnt about the model 😂 but yes 4.6 better for tool use atm</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">CJ</span>
+      <div class="body">
+        <div class="head"><span class="name">Chris Johnson</span><span class="time">26 Apr · 16:30</span></div>
+        <p>"The composition is the point" is the line for me. Going to build something narrow this weekend instead of trying to vibecode a general life-assistant. Probably calendar-blocking for case prep.</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">II</span>
+      <div class="body">
+        <div class="head"><span class="name">Isabella Isotta</span><span class="time">26 Apr · 18:05</span></div>
+        <p>yessss same insight as autoresearch. constrained loop + measurable feedback. honestly do u ever feel like 80% of what we're learning is just "tighten the brief"</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">26 Apr · 18:30</span></div>
+        <p>cman ✊</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">TR</span>
+      <div class="body">
+        <div class="head"><span class="name">Tom Rees</span><span class="time">27 Apr · 09:22</span></div>
+        <p>wait you scrape your friends calendars too? thats a power move</p>
+      </div>
+    </div>
+
+    <div class="comment-form">
+      <span class="avatar">YOU</span>
+      <textarea placeholder="Add a comment..."></textarea>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  INSEAD AI Club Knowledge Hub · Cohort 26D · Mockup
+</footer>
+
+</body>
+</html>

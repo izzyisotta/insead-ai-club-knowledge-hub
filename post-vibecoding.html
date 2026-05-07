@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Vibecoding workflow — Isabella Isotta</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="theme.js"></script>
+<script src="saves.js"></script>
+</head>
+<body>
+
+<div class="demo-banner">Mockup <span>Clickable demo, nothing here is live yet</span></div>
+
+<header class="site">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      INSEAD AI Club Knowledge Hub
+    </a>
+    <nav>
+      <a href="index.html" class="active">Feed</a>
+      <a href="people.html">People</a>
+      <a href="saved.html">Saved</a>
+      <a href="new-post.html">Submit</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" aria-label="Search">⌕</button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme">☾</button>
+      <a href="login.html" class="btn btn-text">Sign in</a>
+      <a href="new-post.html" class="btn btn-primary">Share something</a>
+    </div>
+  </div>
+</header>
+
+<main class="narrow">
+
+  <div class="breadcrumb"><a href="index.html">Feed</a><span class="sep">/</span><a href="#">Building Apps</a><span class="sep">/</span>My vibecoding workflow</div>
+
+  <header class="post-page-header">
+    <span class="category-eyebrow"><span class="dot" style="background: var(--cat-apps);"></span>Building Apps · How-to</span>
+    <h1>My vibecoding workflow: prompt to live website without opening a code editor</h1>
+
+    <div class="byline">
+      <span class="avatar">II</span>
+      <span class="author-name"><a href="people-isabella.html">Isabella Isotta</a></span>
+      <span class="meta-sep">·</span>
+      <span>12 April 2026</span>
+      <span class="meta-sep">·</span>
+      <span>4 min read</span>
+    </div>
+
+    <div class="hashtag-row">
+      <a href="#">#vibecoding</a>
+      <a href="#">#vercel</a>
+      <a href="#">#github-pages</a>
+      <a href="#">#claude-code</a>
+    </div>
+    <button class="save-btn-text" data-slug="post-vibecoding" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><span class="save-label">Save</span></button>
+  </header>
+
+  <article class="post-body">
+    <p>I describe what I want built in plain English. Claude Code writes the code, pushes it to GitHub, and it goes live as a website. <strong>I never touch code or open a code editor.</strong></p>
+
+    <p>Sounds too simple. Is genuinely simple. Five tools doing one thing each.</p>
+
+    <h2>The five tools</h2>
+    <ol>
+      <li><strong>Git</strong> — version control. "Save on steroids."</li>
+      <li><strong>Homebrew</strong> — installs developer tools on Mac.</li>
+      <li><strong>GitHub CLI</strong> — <code>gh repo create my-app --public --source=. --push</code> and the repo exists. Two seconds.</li>
+      <li><strong>Claude Code</strong> — writes everything.</li>
+      <li><strong>Vercel</strong> for dynamic sites, <strong>GitHub Pages</strong> for static.</li>
+    </ol>
+
+    <h2>The flow</h2>
+    <ol>
+      <li>Describe what I want in plain English. Sometimes one paragraph, sometimes a page.</li>
+      <li>Claude Code generates the project. Asks me a few clarifying questions.</li>
+      <li>I review by clicking around the dev server. Tell Claude what's off.</li>
+      <li>It iterates.</li>
+      <li>When it's good: <code>gh repo create</code> + push + deploy. Live URL in under a minute for static, five for dynamic.</li>
+    </ol>
+
+    <h2>What I've built so far</h2>
+    <ul>
+      <li><a href="#">insead-excuse-generator</a> — a joke tool that produces plausible reasons for missing INSEAD events. Most-used tool in my section.</li>
+      <li><a href="https://shelf-one-cyan.vercel.app">trove</a> — social media for books, films, and TV. Real app, dynamic, friend matching, AI recommendations.</li>
+      <li><a href="#">insead-claude-code-demo</a> — the mockup you're looking at right now.</li>
+    </ul>
+
+    <h2>What surprised me</h2>
+    <p>The first deploy is the hard part. Once GitHub Pages or Vercel is hooked up, every subsequent change is just <code>git push</code>. I burned hours on env variables the first time. Five minutes now.</p>
+
+    <p>The other surprise: when Claude gets stuck in a loop, start a new conversation. Long sessions accumulate confusion. New chats are free, and they often resolve in 10 seconds what the old chat had been thrashing on for 20 minutes.</p>
+
+    <h2>Where it doesn't work</h2>
+    <p>Anything that needs real testing matters. I haven't written tests for any of the things above. For trove, that started to bite when I added auth. For tools that nobody depends on, it's fine. For anything you'd put a customer in front of, you need an actual engineer.</p>
+  </article>
+
+  <section class="comments">
+    <h3>5 comments</h3>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">12 Apr · 14:22</span></div>
+        <p>cman</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">CJ</span>
+      <div class="body">
+        <div class="head"><span class="name">Chris Johnson</span><span class="time">12 Apr · 16:08</span></div>
+        <p>"Save on steroids" is a much friendlier way to describe Git than how anyone tried to teach it to me at Bain. Going to use that for the AI Club intro session.</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">TR</span>
+      <div class="body">
+        <div class="head"><span class="name">Tom Rees</span><span class="time">12 Apr · 18:30</span></div>
+        <p>i havent got to vercel yet still fucking around with the tools / it's pretty addictive once you see the potential</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">II</span>
+      <div class="body">
+        <div class="head"><span class="name">Isabella Isotta</span><span class="time">12 Apr · 19:11</span></div>
+        <p>tom u will get there honestly. the first deploy is the only hard bit, after that its just pushing. weirdly similar emotional arc to ur first OB cold-call x</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">12 Apr · 19:40</span></div>
+        <p>side note trove is amazing. been using it daily</p>
+      </div>
+    </div>
+
+    <div class="comment-form">
+      <span class="avatar">YOU</span>
+      <textarea placeholder="Add a comment..."></textarea>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  INSEAD AI Club Knowledge Hub · Cohort 26D · Mockup
+</footer>
+
+</body>
+</html>

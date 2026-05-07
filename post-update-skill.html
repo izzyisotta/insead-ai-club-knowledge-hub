@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Morning vault audit — Isabella Isotta</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="theme.js"></script>
+<script src="saves.js"></script>
+</head>
+<body>
+
+<div class="demo-banner">Mockup <span>Clickable demo, nothing here is live yet</span></div>
+
+<header class="site">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      INSEAD AI Club Knowledge Hub
+    </a>
+    <nav>
+      <a href="index.html" class="active">Feed</a>
+      <a href="people.html">People</a>
+      <a href="saved.html">Saved</a>
+      <a href="new-post.html">Submit</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" aria-label="Search">⌕</button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme">☾</button>
+      <a href="login.html" class="btn btn-text">Sign in</a>
+      <a href="new-post.html" class="btn btn-primary">Share something</a>
+    </div>
+  </div>
+</header>
+
+<main class="narrow">
+
+  <div class="breadcrumb"><a href="index.html">Feed</a><span class="sep">/</span><a href="#">Workflow Automation</a><span class="sep">/</span>The /update skill</div>
+
+  <header class="post-page-header">
+    <span class="category-eyebrow"><span class="dot" style="background: var(--cat-workflow);"></span>Workflow Automation · How-to</span>
+    <h1>Morning vault audit: my /update skill</h1>
+
+    <div class="byline">
+      <span class="avatar">II</span>
+      <span class="author-name"><a href="people-isabella.html">Isabella Isotta</a></span>
+      <span class="meta-sep">·</span>
+      <span>30 March 2026</span>
+      <span class="meta-sep">·</span>
+      <span>3 min read</span>
+    </div>
+
+    <div class="hashtag-row">
+      <a href="#">#obsidian</a>
+      <a href="#">#claude-code</a>
+      <a href="#">#daily-ritual</a>
+    </div>
+    <button class="save-btn-text" data-slug="post-update-skill" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><span class="save-label">Save</span></button>
+  </header>
+
+  <article class="post-body">
+    <p>Morning ritual. I run <code>/update</code>, Claude scans the whole vault for cross-referencing gaps, metadata inconsistencies, broken wikilinks, and unprocessed lecture sources, then groups everything by Critical / Warning / Info severity and auto-fixable / manual-review. Takes 90 seconds. Catches the rot before it accumulates.</p>
+
+    <blockquote>No information should exist in only one place when the vault's rules say it should be reflected in multiple places.</blockquote>
+
+    <h2>The architectural insight</h2>
+    <p>Single in-memory frontmatter index built once at the start, passed to four parallel agents (metadata linter, cross-reference checker, lecture source scanner, wikilink auditor). The vault is scanned <em>once</em> not four times. That's what makes it run in 90s instead of 5 minutes.</p>
+
+    <h2>What it catches</h2>
+    <ul>
+      <li>People who exist in <code>People/</code> but aren't referenced from the People Overview hub</li>
+      <li>Tasks with deadlines that have passed but status is still "active"</li>
+      <li>Lecture slides downloaded but not yet processed into a summary</li>
+      <li>Wikilinks pointing to renamed-or-moved files</li>
+      <li>Frontmatter values that don't match the approved-values list (single source of truth in <code>Vault Metadata System.md</code>)</li>
+    </ul>
+
+    <h2>The auto-fix protocol</h2>
+    <p>Every finding is tagged <code>auto-fixable</code> or <code>manual-review</code>. Auto-fixes get a single confirmation prompt: "apply 17 fixes?" One yes, one batch, done. Manual items I work through individually.</p>
+
+    <h2>What I added recently</h2>
+    <p>A people-network checker that flags when someone has been added to a "People in Network" page but doesn't have an Industry tag in the main People Overview. Closes the loop on cross-referencing without me having to remember to do it.</p>
+
+    <p>Skill file: <a href="#">update.zip</a>. Will need adapting to your own vault structure.</p>
+  </article>
+
+  <section class="comments">
+    <h3>2 comments</h3>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">30 Mar · 14:11</span></div>
+        <p>"the vault is scanned once not four times" — yes!! single index pattern is how you make these ritual scripts feel instant. cman</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">CJ</span>
+      <div class="body">
+        <div class="head"><span class="name">Chris Johnson</span><span class="time">30 Mar · 17:33</span></div>
+        <p>Question: is this a Claude Code skill or a custom script? I assume the skill. Trying to figure out where the boundary is between these two for my own setup.</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">II</span>
+      <div class="body">
+        <div class="head"><span class="name">Isabella Isotta</span><span class="time">30 Mar · 18:02</span></div>
+        <p>skill yes. anything that involves judgement (like "is this finding important?") goes in a skill. anything mechanical (move file, rename, regex) goes in a script. update is mostly judgement so its almost all in the skill</p>
+      </div>
+    </div>
+
+    <div class="comment-form">
+      <span class="avatar">YOU</span>
+      <textarea placeholder="Add a comment..."></textarea>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  INSEAD AI Club Knowledge Hub · Cohort 26D · Mockup
+</footer>
+
+</body>
+</html>

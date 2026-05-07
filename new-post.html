@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Share something — INSEAD AI Club Knowledge Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="theme.js"></script>
+<script src="saves.js"></script>
+<style>
+  /* Show only the active type's fields */
+  #type-howto:checked ~ form .fields-howto { display: block; }
+  #type-tool:checked ~ form .fields-tool { display: block; }
+  #type-skill:checked ~ form .fields-skill { display: block; }
+  #type-resource:checked ~ form .fields-resource { display: block; }
+  .type-fields { display: none; }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">Mockup <span>Clickable demo, nothing here is live yet</span></div>
+
+<header class="site">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      INSEAD AI Club Knowledge Hub
+    </a>
+    <nav>
+      <a href="index.html">Feed</a>
+      <a href="people.html">People</a>
+      <a href="saved.html">Saved</a>
+      <a href="new-post.html" class="active">Submit</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" aria-label="Search">⌕</button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme">☾</button>
+      <a href="login.html" class="btn btn-text">Sign in</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="form-page">
+    <h1>Share something</h1>
+    <p class="subtitle">Anything you've built, configured, recommend, or figured out. Don't overthink it — half-formed thoughts are more useful than polished essays.</p>
+
+    <div class="segmented">
+      <input type="radio" id="type-howto" name="post-type" checked />
+      <label for="type-howto">How-to Guide</label>
+      <input type="radio" id="type-tool" name="post-type" />
+      <label for="type-tool">Tool</label>
+      <input type="radio" id="type-skill" name="post-type" />
+      <label for="type-skill">Skill</label>
+      <input type="radio" id="type-resource" name="post-type" />
+      <label for="type-resource">Resource</label>
+    </div>
+
+    <form>
+
+      <div class="field">
+        <label for="title">Title</label>
+        <input type="text" id="title" placeholder="e.g. How my Canvas sync works" />
+      </div>
+
+      <div class="field">
+        <label for="excerpt">Description</label>
+        <div class="help">One or two sentences. Shows up on cards and in the feed.</div>
+        <input type="text" id="excerpt" placeholder="What's this post about?" />
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="category">Category</label>
+          <select id="category">
+            <option>Workflow Automation</option>
+            <option>Building Apps</option>
+            <option>Agents &amp; Iteration</option>
+            <option>General Config</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="hashtags">Hashtags</label>
+          <div class="help">Comma-separated. Up to 6.</div>
+          <input type="text" id="hashtags" placeholder="e.g. canvas, playwright, launchd" />
+        </div>
+      </div>
+
+      <!-- HOW-TO GUIDE FIELDS -->
+      <div class="type-fields fields-howto" style="display: block;">
+        <div class="field">
+          <label for="body-howto">Body <span style="color: var(--accent); text-transform: none; letter-spacing: 0;">(markdown)</span></label>
+          <textarea id="body-howto" placeholder="## What I built&#10;&#10;..."></textarea>
+        </div>
+        <div class="field">
+          <label>Attach a skill file (optional)</label>
+          <div class="upload-zone">
+            <div class="icon">📎</div>
+            Drop a <code>.md</code> or folder, or <strong>click to browse</strong>
+          </div>
+        </div>
+      </div>
+
+      <!-- TOOL FIELDS -->
+      <div class="type-fields fields-tool">
+        <div class="field">
+          <label for="tool-url">Live URL</label>
+          <div class="help">Required. Where can people use the tool?</div>
+          <input type="url" id="tool-url" placeholder="https://my-app.vercel.app" />
+        </div>
+        <div class="field">
+          <label for="tool-github">GitHub URL <span style="color: var(--fg-subtle); font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 0.78rem;">(optional)</span></label>
+          <input type="url" id="tool-github" placeholder="https://github.com/yourname/repo" />
+        </div>
+        <div class="field">
+          <label>Screenshot</label>
+          <div class="help">16:9 preferred. Drag in or click to browse.</div>
+          <div class="upload-zone">
+            <div class="icon">🖼</div>
+            Drop a screenshot or <strong>click to browse</strong>
+          </div>
+        </div>
+        <div class="field">
+          <label for="body-tool">Short description <span style="color: var(--fg-subtle); font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 0.78rem;">(optional, markdown)</span></label>
+          <textarea id="body-tool" style="min-height: 120px;" placeholder="What does it do? Who's it for?"></textarea>
+        </div>
+      </div>
+
+      <!-- SKILL FIELDS -->
+      <div class="type-fields fields-skill">
+        <div class="field">
+          <label for="slash-cmd">Slash command</label>
+          <div class="help">Required. Lowercase, hyphenated. e.g. /evaluate</div>
+          <input type="text" id="slash-cmd" placeholder="/your-command" />
+        </div>
+        <div class="field">
+          <label>Skill file <span style="color: var(--accent); text-transform: none; letter-spacing: 0; font-weight: 400;">(required)</span></label>
+          <div class="help">A .md file or zipped folder containing your SKILL.md and supporting files.</div>
+          <div class="upload-zone">
+            <div class="icon">📎</div>
+            Drop your skill folder, or <strong>click to browse</strong>
+          </div>
+        </div>
+        <div class="field">
+          <label for="body-skill">How to use it <span style="color: var(--accent); text-transform: none; letter-spacing: 0; font-weight: 400;">(markdown, required)</span></label>
+          <textarea id="body-skill" placeholder="## What it does&#10;&#10;## When to use it&#10;&#10;## How to install"></textarea>
+        </div>
+      </div>
+
+      <!-- RESOURCE FIELDS -->
+      <div class="type-fields fields-resource">
+        <div class="field">
+          <label for="resource-url">Source URL</label>
+          <div class="help">Required. Where can people find it?</div>
+          <input type="url" id="resource-url" placeholder="https://..." />
+        </div>
+        <div class="field">
+          <label for="resource-source">Source name</label>
+          <div class="help">Who published this? e.g. "Dwarkesh Podcast", "The Verge"</div>
+          <input type="text" id="resource-source" placeholder="e.g. Anthropic Blog" />
+        </div>
+        <div class="field">
+          <label for="resource-why">Why is it worth your time?</label>
+          <div class="help">Required. 280 char max — frame as a recommendation, not a summary.</div>
+          <textarea id="resource-why" maxlength="280" style="min-height: 100px; font-family: 'Geist', sans-serif;" placeholder="The reason this matters for the cohort..."></textarea>
+        </div>
+        <div class="field">
+          <label for="resource-quote">Pull quote <span style="color: var(--fg-subtle); font-weight: 400; text-transform: none; letter-spacing: 0; font-size: 0.78rem;">(optional)</span></label>
+          <input type="text" id="resource-quote" placeholder="A line from the source worth highlighting" />
+        </div>
+      </div>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-primary">Publish</button>
+        <button type="button" class="btn btn-ghost">Save draft</button>
+        <span class="author-tag">Posting as <strong>Isabella Isotta</strong></span>
+      </div>
+
+    </form>
+  </div>
+</main>
+
+<footer class="site">
+  INSEAD AI Club Knowledge Hub · Cohort 26D · Mockup
+</footer>
+
+</body>
+</html>

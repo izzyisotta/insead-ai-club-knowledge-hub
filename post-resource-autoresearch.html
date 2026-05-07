@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Karpathy's autoresearch — recommended by Freddie</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="theme.js"></script>
+<script src="saves.js"></script>
+</head>
+<body>
+
+<div class="demo-banner">Mockup <span>Clickable demo, nothing here is live yet</span></div>
+
+<header class="site">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      INSEAD AI Club Knowledge Hub
+    </a>
+    <nav>
+      <a href="index.html" class="active">Feed</a>
+      <a href="people.html">People</a>
+      <a href="saved.html">Saved</a>
+      <a href="new-post.html">Submit</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" aria-label="Search">⌕</button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme">☾</button>
+      <a href="login.html" class="btn btn-text">Sign in</a>
+      <a href="new-post.html" class="btn btn-primary">Share something</a>
+    </div>
+  </div>
+</header>
+
+<main class="narrow">
+
+  <div class="breadcrumb"><a href="index.html">Feed</a><span class="sep">/</span><a href="#">Agents &amp; Iteration</a><span class="sep">/</span>Karpathy's autoresearch</div>
+
+  <header class="post-page-header">
+    <span class="category-eyebrow"><span class="dot" style="background: var(--cat-agents);"></span>Agents &amp; Iteration · Resource</span>
+    <h1>Karpathy's autoresearch — the cleanest case study for the Productive-to-Automation jump</h1>
+
+    <div class="byline">
+      <span>Recommended by</span>
+      <span class="avatar">FC</span>
+      <span class="author-name"><a href="people-freddie.html">Freddie Chambers</a></span>
+      <span class="meta-sep">·</span>
+      <span>09 April 2026</span>
+    </div>
+
+    <div class="hashtag-row">
+      <a href="#">#karpathy</a>
+      <a href="#">#agentic-loop</a>
+      <a href="#">#worth-reading</a>
+    </div>
+
+    <a href="#" class="attachment-pill">↗ github.com/karpathy/autoresearch</a>
+    <button class="save-btn-text" data-slug="post-resource-autoresearch" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><span class="save-label">Save</span></button>
+  </header>
+
+  <article class="post-body">
+    <p style="font-family: 'JetBrains Mono', monospace; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--fg-subtle); margin-bottom: 0.5rem;">By Andrej Karpathy · GitHub · 7 March 2026 · 30k+ stars</p>
+
+    <h2>Why this matters</h2>
+    <p>This is well worth staying close to. Andrej Karpathy, the godfather of AI, released a new GitHub repo which allows an agent to loop and self-improve on any task.</p>
+
+    <p>It's a ~630-line Python script that runs a tight loop:</p>
+
+    <ol>
+      <li>Agent reads <code>program.md</code></li>
+      <li>Modifies <code>train.py</code></li>
+      <li>Trains for 5 minutes on a single GPU</li>
+      <li>Keeps the change if validation improves, reverts otherwise</li>
+      <li>Repeat</li>
+    </ol>
+
+    <p>Karpathy got 11% efficiency gain overnight. Shopify's CEO got 19% on a query-expansion model.</p>
+
+    <blockquote>Constrained loop with measurable feedback. The pattern that actually works.</blockquote>
+
+    <h2>Why I'm sharing it for the AI Club</h2>
+    <p>This is the cleanest case study for the Productive→Automation jump. It contrasts with Project Vend (Claudius the vending machine that hallucinated Venmo and tried a tungsten cube fire sale) to give the club a sharp diagnostic question:</p>
+
+    <p><strong>How tightly is the problem constrained?</strong></p>
+
+    <p>Tightly constrained + measurable feedback = automation works. Loose problem + unclear success criteria = open agent fails. Apply this lens before you build anything.</p>
+
+    <p>The repo: <a href="#">github.com/karpathy/autoresearch</a>. Listen to the <a href="#">Startup Ideas episode</a> for context.</p>
+  </article>
+
+  <section class="comments">
+    <h3>4 comments</h3>
+
+    <div class="comment">
+      <span class="avatar">TR</span>
+      <div class="body">
+        <div class="head"><span class="name">Tom Rees</span><span class="time">09 Apr · 14:11</span></div>
+        <p>and it moves itself to a new context window when it runs out?</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">09 Apr · 14:18</span></div>
+        <p>yes. as excited as I have seen the proper ai influence ppl. As big as openclaw imo</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">II</span>
+      <div class="body">
+        <div class="head"><span class="name">Isabella Isotta</span><span class="time">09 Apr · 16:48</span></div>
+        <p>"how tightly is the problem constrained" is THE framework. ffs wish someone had taught me this before i spent two months trying to build a general "study assistant"</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">CJ</span>
+      <div class="body">
+        <div class="head"><span class="name">Chris Johnson</span><span class="time">09 Apr · 19:30</span></div>
+        <p>Going to be the recurring question we ask in the section group chat from now on. Beautifully phrased.</p>
+      </div>
+    </div>
+
+    <div class="comment-form">
+      <span class="avatar">YOU</span>
+      <textarea placeholder="Add a comment..."></textarea>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  INSEAD AI Club Knowledge Hub · Cohort 26D · Mockup
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Lecture-note pipeline — Isabella Isotta</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="theme.js"></script>
+<script src="saves.js"></script>
+</head>
+<body>
+
+<div class="demo-banner">Mockup <span>Clickable demo, nothing here is live yet</span></div>
+
+<header class="site">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      INSEAD AI Club Knowledge Hub
+    </a>
+    <nav>
+      <a href="index.html" class="active">Feed</a>
+      <a href="people.html">People</a>
+      <a href="saved.html">Saved</a>
+      <a href="new-post.html">Submit</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" aria-label="Search">⌕</button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme">☾</button>
+      <a href="login.html" class="btn btn-text">Sign in</a>
+      <a href="new-post.html" class="btn btn-primary">Share something</a>
+    </div>
+  </div>
+</header>
+
+<main class="narrow">
+
+  <div class="breadcrumb"><a href="index.html">Feed</a><span class="sep">/</span><a href="#">Workflow Automation</a><span class="sep">/</span>Lecture pipeline</div>
+
+  <header class="post-page-header">
+    <span class="category-eyebrow"><span class="dot" style="background: var(--cat-workflow);"></span>Workflow Automation · How-to</span>
+    <h1>Lecture recording → polished study notes, end to end</h1>
+
+    <div class="byline">
+      <span class="avatar">II</span>
+      <span class="author-name"><a href="people-isabella.html">Isabella Isotta</a></span>
+      <span class="meta-sep">·</span>
+      <span>05 April 2026</span>
+      <span class="meta-sep">·</span>
+      <span>4 min read</span>
+    </div>
+
+    <div class="hashtag-row">
+      <a href="#">#lecture-notes</a>
+      <a href="#">#whisper</a>
+      <a href="#">#obsidian</a>
+      <a href="#">#gemini</a>
+    </div>
+    <button class="save-btn-text" data-slug="post-lecture-pipeline" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><span class="save-label">Save</span></button>
+  </header>
+
+  <article class="post-body">
+    <p>End-to-end automated. Phone records the lecture, polished study notes appear in my vault by the time I'm home. Five steps, each doing one thing.</p>
+
+    <h2>The pipeline</h2>
+    <ol>
+      <li><strong>iPhone Shortcut</strong> records as <code>[Course]_L##.m4a</code> to iCloud.</li>
+      <li><strong>Bash wrapper</strong> moves the audio to Google Drive.</li>
+      <li><strong>Python script</strong> uploads it to Gemini 2.5 Flash (verbatim transcript, professor labelled "Professor:", auto-continues if the token limit is hit).</li>
+      <li><strong>Bash routing</strong> drops the <code>.txt</code> into the right <code>Sources/L##/</code> folder.</li>
+      <li><strong>Claude</strong> via my <code>/update</code> skill detects the unprocessed transcript, hands it to <code>lecture-note-processor</code>, which generates Key Concepts / Summary / Detailed Notes and updates the wikilink graph.</li>
+    </ol>
+
+    <h2>Why split it</h2>
+    <p>One giant prompt loses the plot. Splitting into stages was way more reliable. If one stage breaks, you re-run that stage, not the whole thing.</p>
+
+    <h2>The trick that made it sound like me</h2>
+    <p>Feeding Claude my <em>existing</em> notes as context, not just the new transcript. The output sounds like me because it has 200 of my prior notes to imitate.</p>
+
+    <h2>Privacy</h2>
+    <p>Only Apple, Google, and Anthropic touch the data. No third parties.</p>
+
+    <h2>Time saved</h2>
+    <p>About three hours per lecture. ~200 hours saved across the MBA. By a wide margin the highest-leverage thing I've built.</p>
+  </article>
+
+  <section class="comments">
+    <h3>4 comments</h3>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">05 Apr · 11:22</span></div>
+        <p>splitting into stages is the right move. one giant prompt is almost always worse than four chained ones. cman</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">TR</span>
+      <div class="body">
+        <div class="head"><span class="name">Tom Rees</span><span class="time">05 Apr · 14:08</span></div>
+        <p>"output sounds like me because it has 200 of my prior notes" / this is the killer insight / style transfer at scale</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">CJ</span>
+      <div class="body">
+        <div class="head"><span class="name">Chris Johnson</span><span class="time">06 Apr · 09:30</span></div>
+        <p>How do you handle the lectures that are mostly diagrams?</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">II</span>
+      <div class="body">
+        <div class="head"><span class="name">Isabella Isotta</span><span class="time">06 Apr · 10:15</span></div>
+        <p>i pass the slide PDF alongside the transcript — claude reads diagrams ok now, esp flowcharts and 2x2s. quant with handwritten equations is still pretty rough tho lolz. accounting professors a particular menace</p>
+      </div>
+    </div>
+
+    <div class="comment-form">
+      <span class="avatar">YOU</span>
+      <textarea placeholder="Add a comment..."></textarea>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  INSEAD AI Club Knowledge Hub · Cohort 26D · Mockup
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Canvas sync — Isabella Isotta</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="theme.js"></script>
+<script src="saves.js"></script>
+</head>
+<body>
+
+<div class="demo-banner">Mockup <span>Clickable demo, nothing here is live yet</span></div>
+
+<header class="site">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      INSEAD AI Club Knowledge Hub
+    </a>
+    <nav>
+      <a href="index.html" class="active">Feed</a>
+      <a href="people.html">People</a>
+      <a href="saved.html">Saved</a>
+      <a href="new-post.html">Submit</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" aria-label="Search">⌕</button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme">☾</button>
+      <a href="login.html" class="btn btn-text">Sign in</a>
+      <a href="new-post.html" class="btn btn-primary">Share something</a>
+    </div>
+  </div>
+</header>
+
+<main class="narrow">
+
+  <div class="breadcrumb"><a href="index.html">Feed</a><span class="sep">/</span><a href="#">Workflow Automation</a><span class="sep">/</span>Canvas sync</div>
+
+  <header class="post-page-header">
+    <span class="category-eyebrow"><span class="dot" style="background: var(--cat-workflow);"></span>Workflow Automation · How-to</span>
+    <h1>How my Canvas sync works (the Playwright route)</h1>
+
+    <div class="byline">
+      <span class="avatar">II</span>
+      <span class="author-name"><a href="people-isabella.html">Isabella Isotta</a></span>
+      <span class="meta-sep">·</span>
+      <span>20 April 2026</span>
+      <span class="meta-sep">·</span>
+      <span>5 min read</span>
+    </div>
+
+    <div class="hashtag-row">
+      <a href="#">#canvas</a>
+      <a href="#">#playwright</a>
+      <a href="#">#launchd</a>
+      <a href="#">#auth</a>
+    </div>
+    <button class="save-btn-text" data-slug="post-canvas-sync" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><span class="save-label">Save</span></button>
+  </header>
+
+  <article class="post-body">
+    <p>Every morning at 7:30am a launchd job logs into Canvas, walks every course, and pulls anything new into my <code>Sources/L##/</code> folders. New lecture files become uploads. New assignments become to-do items with deadline tracking. I look at one place — Obsidian — and the whole picture is there.</p>
+
+    <p>The interesting bit isn't the scrape. It's the auth resilience. INSEAD's ADFS login changes selectors more often than I'd like, so a brittle script breaks weekly. The script I run hasn't broken in six.</p>
+
+    <h2>The script</h2>
+    <p>The whole thing is one Python file: <code>canvas-sync-playwright.py</code>. It uses Playwright with a persistent browser profile so cookies survive between runs.</p>
+
+    <pre><code>~/scripts/canvas-sync-playwright.py
+~/.config/canvas-sync/.env       # username + password fallback
+~/Library/LaunchAgents/canvas-sync.plist</code></pre>
+
+    <h2>Auth, in three layers</h2>
+    <ol>
+      <li><strong>Cookie reuse.</strong> Persistent context. If the session is still alive, just navigate to a course page and we're in.</li>
+      <li><strong>Silent SSO refresh.</strong> If cookies expired (every 1-3 days), navigate to the SSO redirect URL. Most days the IDP refreshes silently and you're back in.</li>
+      <li><strong>Username/password fallback.</strong> If silent refresh fails, fill in the login form using a chain of selectors (in order: <code>id</code>, <code>name</code>, <code>placeholder</code>, ARIA attributes, label-based). Whatever the ADFS UI is wearing today, one of those usually still works.</li>
+    </ol>
+
+    <h2>Then the walk</h2>
+    <pre><code>for course in canvas.list_courses():
+    for module in course.modules:
+        for item in module.new_items_since(last_run):
+            download_to(f"Sources/{course.code}/L{item.lecture_no:02d}/")
+            if item.is_assignment:
+                add_to_todo_inbox(item)</code></pre>
+
+    <p>That's most of it. There's some categorisation — slides go to one folder, readings to another, Harvard/McKinsey blocks get logged for end-of-term batch download — but the core loop is that.</p>
+
+    <h2>Things that surprised me</h2>
+    <ul>
+      <li><strong>Throttling matters.</strong> Hit Canvas too hard and you get soft-blocked. I throttle to one request every 1.5s and stagger across courses. No failures in three weeks.</li>
+      <li><strong>The session keepalive idea was wrong.</strong> I built a daemon that hit the API every hour to "keep the session alive." It didn't. Reading from the API doesn't extend the session. Archived.</li>
+      <li><strong>The auto-tagger is the real win.</strong> Once everything was flowing into folders, I added a small Claude step that tags each item by topic. Now I can filter readings by "negotiation" or "case method" instead of by which week it dropped.</li>
+    </ul>
+
+    <h2>What I'd do differently</h2>
+    <p>I started with complicated browser automation. Half of it I could have done with the Canvas REST API — Canvas does have one, even though it's gated. Lesson: check the API surface first, automate the browser only for the parts the API doesn't cover.</p>
+
+    <p>Script is in <a href="#">my dotfiles repo</a>. The Claude Code skill that orchestrates it is shared via the attachment. If you're building your own, happy to walk through it — drop a comment.</p>
+  </article>
+
+  <section class="comments">
+    <h3>6 comments</h3>
+
+    <div class="comment">
+      <span class="avatar">CJ</span>
+      <div class="body">
+        <div class="head"><span class="name">Chris Johnson</span><span class="time">20 Apr · 09:45</span></div>
+        <p>I went the Chrome MCP route instead — yeah just chrome integration sadly! It's quite long / compute intense, but I didn't want to maintain my own Playwright auth chain. Going to write up the trade-offs.</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">II</span>
+      <div class="body">
+        <div class="head"><span class="name">Isabella Isotta</span><span class="time">20 Apr · 09:58</span></div>
+        <p>yesss please write it up!! genuinely think Chrome MCP is the right call for most ppl, mine is just a v specific edge case bc i wanted it running unattended at 7:30am</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">20 Apr · 11:20</span></div>
+        <p>"Reading from the API doesn't extend the session" — i made this exact mistake on my voice note pipeline last term lmao. classic</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">TR</span>
+      <div class="body">
+        <div class="head"><span class="name">Tom Rees</span><span class="time">20 Apr · 12:33</span></div>
+        <p>Has anyone managed to get canvas API key? or doing it thru playwright</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">20 Apr · 12:40</span></div>
+        <p>it works if you just ask playwright to grab it</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">TR</span>
+      <div class="body">
+        <div class="head"><span class="name">Tom Rees</span><span class="time">20 Apr · 12:42</span></div>
+        <p>as in ask playwright to grab the API key? because playwright can bypass the security somehow?</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">20 Apr · 12:45</span></div>
+        <p>no clue. just said grab it and it worked. cman</p>
+      </div>
+    </div>
+
+    <div class="comment-form">
+      <span class="avatar">YOU</span>
+      <textarea placeholder="Add a comment..."></textarea>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  INSEAD AI Club Knowledge Hub · Cohort 26D · Mockup
+</footer>
+
+</body>
+</html>

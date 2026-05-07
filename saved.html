@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Saved — INSEAD AI Club Knowledge Hub</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="theme.js"></script>
+<script src="saves.js"></script>
+</head>
+<body data-page="saved">
+
+<div class="demo-banner">Mockup <span>Clickable demo, nothing here is live yet</span></div>
+
+<header class="site">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      INSEAD AI Club Knowledge Hub
+    </a>
+    <nav>
+      <a href="index.html">Feed</a>
+      <a href="people.html">People</a>
+      <a href="saved.html" class="active">Saved</a>
+      <a href="new-post.html">Submit</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" aria-label="Search" title="Search (⌘K)">⌕</button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme">☾</button>
+      <a href="login.html" class="btn btn-text">Sign in</a>
+      <a href="new-post.html" class="btn btn-primary">Share something</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="page-title">
+    <div class="breadcrumb"><a href="index.html">Feed</a><span class="sep">/</span>Saved</div>
+    <h1>Saved posts</h1>
+    <p class="subtitle"><span class="saved-count">0 saved posts</span>. Click the bookmark on any post to save it for later.</p>
+  </div>
+
+  <div class="saved-empty">
+    <div class="icon">🔖</div>
+    Nothing saved yet. Click the bookmark on any post to save it here.
+  </div>
+
+  <section class="feed">
+
+    <div class="feed-controls" style="display:none">
+
+    <div class="filter-row">
+      <button class="chip active">All</button>
+      <button class="chip"><span class="dot" style="background: var(--cat-workflow);"></span>Workflow Automation</button>
+      <button class="chip"><span class="dot" style="background: var(--cat-apps);"></span>Building Apps</button>
+      <button class="chip"><span class="dot" style="background: var(--cat-agents);"></span>Agents &amp; Iteration</button>
+      <button class="chip"><span class="dot" style="background: var(--cat-config);"></span>General Config</button>
+      <span class="filter-sep"></span>
+      <button class="chip chip-ghost">All types</button>
+      <button class="chip chip-ghost">How-to</button>
+      <button class="chip chip-ghost">Tool</button>
+      <button class="chip chip-ghost">Skill</button>
+      <button class="chip chip-ghost">Resource</button>
+    </div>
+
+    <ul class="post-list">
+
+      <li class="post-row">
+        <button class="save-btn" data-slug="post-resource-blackstone-anthropic" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-resource-blackstone-anthropic.html" class="row-link" data-slug="post-resource-blackstone-anthropic">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-agents);"></span>
+              <span>Agents &amp; Iteration</span>
+              <span class="meta-sep">·</span>
+              <span>Resource</span>
+              <span class="meta-sep">·</span>
+              <span>04 May 2026</span>
+            </div>
+            <h3>Blackstone &amp; Goldman among backers for $1.5bn JV with Anthropic</h3>
+            <p class="excerpt">Enterprise finance fully commits. Not a tech-sector bet, a financial-system bet. Consulting Claude services to enterprise will be the most in-demand skill in the next 2 years.</p>
+            <div class="hashtags"><span>#anthropic</span><span>#enterprise</span><span>#funding</span></div>
+          </div>
+          <div class="row-side"><span class="author">via Freddie</span><span>04 May</span></div>
+        </a>
+      </li>
+
+      <li class="post-row">
+        <button class="save-btn" data-slug="post-tennis-agent" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-tennis-agent.html" class="row-link" data-slug="post-tennis-agent">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-apps);"></span>
+              <span>Building Apps</span>
+              <span class="meta-sep">·</span>
+              <span>How-to</span>
+              <span class="meta-sep">·</span>
+              <span>26 April 2026</span>
+            </div>
+            <h3>I built an agent to book real tennis courts in Fontainebleau</h3>
+            <p class="excerpt">Not ready to hand my whole keychain to an open agent yet, but the sweet spot is the slightly fiddly repetitive flow you do over and over. Hardcoded auth, single site, three inputs. Claude isn't deciding much, just doing the boring fetch + filter against my calendar.</p>
+            <div class="hashtags"><span>#agents</span><span>#playwright</span><span>#real-tennis</span></div>
+          </div>
+          <div class="row-side"><span class="author">Freddie Chambers</span><span>26 Apr</span></div>
+        </a>
+      </li>
+
+      <li class="post-row">
+        <button class="save-btn" data-slug="post-five-days-deep" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-five-days-deep.html" class="row-link" data-slug="post-five-days-deep">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-agents);"></span>
+              <span>Agents &amp; Iteration</span>
+              <span class="meta-sep">·</span>
+              <span>How-to</span>
+              <span class="meta-sep">·</span>
+              <span>25 April 2026</span>
+            </div>
+            <h3>Five days deep with Claude: a field report</h3>
+            <p class="excerpt">"I spent about 8 hours with claude today. I got the £200 version." What happens when you cancel POM revision and just play. The honest answer: 12 hours of potential study time, lots of half-built tools, and one or two things I'll actually use.</p>
+            <div class="hashtags"><span>#procrastination</span><span>#first-impressions</span><span>#confessional</span></div>
+          </div>
+          <div class="row-side"><span class="author">Tom Rees</span><span>25 Apr</span></div>
+        </a>
+      </li>
+
+      <li class="post-row">
+        <button class="save-btn" data-slug="post-canvas-sync" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-canvas-sync.html" class="row-link" data-slug="post-canvas-sync">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-workflow);"></span>
+              <span>Workflow Automation</span>
+              <span class="meta-sep">·</span>
+              <span>How-to</span>
+              <span class="meta-sep">·</span>
+              <span>20 April 2026</span>
+            </div>
+            <h3>How my Canvas sync works (the Playwright route)</h3>
+            <p class="excerpt">Every morning at 7:30am a launchd job logs into Canvas, walks every course, and pulls anything new into my Sources/L## folders. The interesting bit is the auth resilience: silent SSO refresh, fall back to env file, swap selectors when the ADFS UI changes.</p>
+            <div class="hashtags"><span>#canvas</span><span>#playwright</span><span>#launchd</span></div>
+          </div>
+          <div class="row-side"><span class="author">Isabella Isotta</span><span>20 Apr</span></div>
+        </a>
+      </li>
+
+      <li class="post-row">
+        <button class="save-btn" data-slug="post-canvas-chrome" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-canvas-chrome.html" class="row-link" data-slug="post-canvas-chrome">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-config);"></span>
+              <span>General Config</span>
+              <span class="meta-sep">·</span>
+              <span>How-to</span>
+              <span class="meta-sep">·</span>
+              <span>18 April 2026</span>
+            </div>
+            <h3>Canvas the Chrome way: yeah it's compute-heavy, here's why I went there anyway</h3>
+            <p class="excerpt">Tried the Canvas API, hit walls. Tried Playwright, didn't love it. Ended up using Chrome MCP through the actual session. It's clunky and compute-heavy. It also just works without faffing with auth tokens.</p>
+            <div class="hashtags"><span>#canvas</span><span>#chrome-mcp</span><span>#trade-offs</span></div>
+          </div>
+          <div class="row-side"><span class="author">Chris Johnson</span><span>18 Apr</span></div>
+        </a>
+      </li>
+
+      <li class="post-row">
+        <button class="save-btn" data-slug="post-resource-shape-of-ai" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-resource-shape-of-ai.html" class="row-link" data-slug="post-resource-shape-of-ai">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-agents);"></span>
+              <span>Agents &amp; Iteration</span>
+              <span class="meta-sep">·</span>
+              <span>Resource</span>
+              <span class="meta-sep">·</span>
+              <span>15 April 2026</span>
+            </div>
+            <h3>The Shape of AI: jaggedness, bottlenecks and salients</h3>
+            <p class="excerpt">Ethan Mollick's framing of the uneven AI frontier — extraordinary at some tasks, bafflingly bad at adjacent ones. Useful vocabulary for AI Club workshops: "where is the salient for case prep? for due diligence?"</p>
+            <div class="hashtags"><span>#ethan-mollick</span><span>#frontier</span><span>#worth-reading</span></div>
+          </div>
+          <div class="row-side"><span class="author">via Isabella</span><span>15 Apr</span></div>
+        </a>
+      </li>
+
+      <li class="post-row">
+        <button class="save-btn" data-slug="post-vibecoding" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-vibecoding.html" class="row-link" data-slug="post-vibecoding">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-apps);"></span>
+              <span>Building Apps</span>
+              <span class="meta-sep">·</span>
+              <span>How-to</span>
+              <span class="meta-sep">·</span>
+              <span>12 April 2026</span>
+            </div>
+            <h3>My vibecoding workflow: prompt to live website without opening a code editor</h3>
+            <p class="excerpt">"I describe what I want built in plain English. Claude Code writes the code, pushes it to GitHub, and it goes live as a website. I never touch code or open a code editor." Five tools doing one thing each. Static sites live in a minute, dynamic in five.</p>
+            <div class="hashtags"><span>#vibecoding</span><span>#vercel</span><span>#github-pages</span></div>
+          </div>
+          <div class="row-side"><span class="author">Isabella Isotta</span><span>12 Apr</span></div>
+        </a>
+      </li>
+
+      <li class="post-row">
+        <a href="#" class="row-link">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-apps);"></span>
+              <span>Building Apps</span>
+              <span class="meta-sep">·</span>
+              <span>Tool</span>
+              <span class="meta-sep">·</span>
+              <span>10 April 2026</span>
+            </div>
+            <h3>GrapeSnap — photo-based wine identifier (iOS)</h3>
+            <p class="excerpt">Native SwiftUI iOS app I've been chipping away at for ages. Snap a label, get tasting notes and pairing suggestions. Built on a WSET Level 2 brain and the food-writing instincts. Not vibecoded, not a weekend.</p>
+            <div class="hashtags"><span>#ios</span><span>#swiftui</span><span>#wine</span></div>
+          </div>
+          <div class="row-side"><span class="author">Freddie Chambers</span><span>10 Apr ↗</span></div>
+        </a>
+      </li>
+
+      <li class="post-row">
+        <button class="save-btn" data-slug="post-resource-autoresearch" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-resource-autoresearch.html" class="row-link" data-slug="post-resource-autoresearch">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-agents);"></span>
+              <span>Agents &amp; Iteration</span>
+              <span class="meta-sep">·</span>
+              <span>Resource</span>
+              <span class="meta-sep">·</span>
+              <span>09 April 2026</span>
+            </div>
+            <h3>Karpathy's autoresearch — the cleanest case study for the Productive-to-Automation jump</h3>
+            <p class="excerpt">A ~630-line Python script that runs a tight loop: agent reads program.md, modifies train.py, trains for 5 minutes on a single GPU, keeps the change if validation improves, reverts otherwise. Karpathy got 11% efficiency overnight. Shopify's CEO got 19%.</p>
+            <div class="hashtags"><span>#karpathy</span><span>#agentic-loop</span><span>#worth-reading</span></div>
+          </div>
+          <div class="row-side"><span class="author">via Freddie</span><span>09 Apr</span></div>
+        </a>
+      </li>
+
+      <li class="post-row is-featured">
+        <button class="save-btn" data-slug="post-lecture-pipeline" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-lecture-pipeline.html" class="row-link" data-slug="post-lecture-pipeline">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-workflow);"></span>
+              <span>Workflow Automation</span>
+              <span class="meta-sep">·</span>
+              <span>How-to</span>
+              <span class="meta-sep">·</span>
+              <span>05 April 2026</span>
+            </div>
+            <h3>Lecture recording → polished study notes, end to end</h3>
+            <p class="excerpt">iPhone Shortcut records, bash moves to Drive, Gemini transcribes (verbatim, professor-labelled), Claude turns the transcript + slides + my own scribbled notes into a structured Obsidian note that cross-links to the rest of the vault. Privacy line: "Only Apple, Google, and Anthropic touch the data."</p>
+            <div class="hashtags"><span>#lecture-notes</span><span>#whisper</span><span>#obsidian</span></div>
+          </div>
+          <div class="row-side"><span class="author">Isabella Isotta</span><span>05 Apr</span></div>
+        </a>
+      </li>
+
+      <li class="post-row">
+        <button class="save-btn" data-slug="post-evaluate-skill" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-evaluate-skill.html" class="row-link" data-slug="post-evaluate-skill">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-agents);"></span>
+              <span>Agents &amp; Iteration</span>
+              <span class="meta-sep">·</span>
+              <span>Skill</span>
+              <span class="meta-sep">·</span>
+              <span>04 April 2026</span>
+            </div>
+            <h3>The evaluate skill — a generator/evaluator loop for design</h3>
+            <p class="excerpt">The AI that writes the code can't objectively judge it. So we split the process: generator and evaluator, fresh evaluator each iteration, weighted criteria where originality matters more than polish. Slash command attached.</p>
+            <div class="hashtags"><span>#multi-agent</span><span>#design</span><span>#skill-file</span></div>
+          </div>
+          <div class="row-side"><span class="author">Freddie Chambers</span><span>04 Apr</span></div>
+        </a>
+      </li>
+
+      <li class="post-row">
+        <button class="save-btn" data-slug="post-resource-hierarchy-to-intelligence" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-resource-hierarchy-to-intelligence.html" class="row-link" data-slug="post-resource-hierarchy-to-intelligence">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-agents);"></span>
+              <span>Agents &amp; Iteration</span>
+              <span class="meta-sep">·</span>
+              <span>Resource</span>
+              <span class="meta-sep">·</span>
+              <span>03 April 2026</span>
+            </div>
+            <h3>From Hierarchy to Intelligence</h3>
+            <p class="excerpt">"i urge everyone to read this." 8 pages from Block on what happens to org charts when intelligence stops being the scarce input. The roles section is the bit.</p>
+            <div class="hashtags"><span>#org-design</span><span>#jack-dorsey</span><span>#worth-reading</span></div>
+          </div>
+          <div class="row-side"><span class="author">via Freddie</span><span>03 Apr</span></div>
+        </a>
+      </li>
+
+      <li class="post-row is-featured">
+        <button class="save-btn" data-slug="post-voice-pipeline" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-voice-pipeline.html" class="row-link" data-slug="post-voice-pipeline">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-workflow);"></span>
+              <span>Workflow Automation</span>
+              <span class="meta-sep">·</span>
+              <span>How-to</span>
+              <span class="meta-sep">·</span>
+              <span>02 April 2026</span>
+            </div>
+            <h3>The voice-note pipeline behind the personal-assistant setup</h3>
+            <p class="excerpt">Hit a button on my phone, dictate a thought, and by the time I put the phone down the AI has read context, checked my calendar, and queued an action for me to approve from Telegram. Mac Mini at home stays on as the butler.</p>
+            <div class="hashtags"><span>#voice-notes</span><span>#telegram</span><span>#mac-mini</span></div>
+          </div>
+          <div class="row-side"><span class="author">Freddie Chambers</span><span>02 Apr</span></div>
+        </a>
+      </li>
+
+      <li class="post-row">
+        <button class="save-btn" data-slug="post-update-skill" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-update-skill.html" class="row-link" data-slug="post-update-skill">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-workflow);"></span>
+              <span>Workflow Automation</span>
+              <span class="meta-sep">·</span>
+              <span>How-to</span>
+              <span class="meta-sep">·</span>
+              <span>30 March 2026</span>
+            </div>
+            <h3>Morning vault audit: my /update skill</h3>
+            <p class="excerpt">"No information should exist in only one place when the vault's rules say it should be reflected in multiple places." Single in-memory frontmatter index, four parallel agents auditing in one pass, severity-grouped output, batched auto-fixes.</p>
+            <div class="hashtags"><span>#obsidian</span><span>#claude-code</span><span>#daily-ritual</span></div>
+          </div>
+          <div class="row-side"><span class="author">Isabella Isotta</span><span>30 Mar</span></div>
+        </a>
+      </li>
+
+      <li class="post-row">
+        <a href="https://shelf-one-cyan.vercel.app" class="row-link">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-apps);"></span>
+              <span>Building Apps</span>
+              <span class="meta-sep">·</span>
+              <span>Tool</span>
+              <span class="meta-sep">·</span>
+              <span>27 March 2026</span>
+            </div>
+            <h3>trove — social media for books, films &amp; TV with AI recs</h3>
+            <p class="excerpt">A small app for tracking what you've read and watched, finding overlap with friends, and getting recommendations that don't feel algorithmic. Vibecoded over a few weekends.</p>
+            <div class="hashtags"><span>#vibecoded</span><span>#books</span><span>#films</span></div>
+          </div>
+          <div class="row-side"><span class="author">Isabella Isotta</span><span>27 Mar ↗</span></div>
+        </a>
+      </li>
+
+      <li class="post-row is-featured">
+        <button class="save-btn" data-slug="post-mcp-setup" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-mcp-setup.html" class="row-link" data-slug="post-mcp-setup">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-config);"></span>
+              <span>General Config</span>
+              <span class="meta-sep">·</span>
+              <span>How-to</span>
+              <span class="meta-sep">·</span>
+              <span>22 March 2026</span>
+            </div>
+            <h3>Setting up Claude Code MCP servers (the bits that actually break)</h3>
+            <p class="excerpt">A walkthrough of the MCP servers worth installing on day one (Playwright, Chrome, OneNote, MS365), plus the things that catch everyone the first time: ~/.claude.json vs project config, restart-doesn't-mean-close-window, and the Mac accessibility prompt.</p>
+            <div class="hashtags"><span>#mcp-servers</span><span>#setup</span><span>#gotchas</span></div>
+          </div>
+          <div class="row-side"><span class="author">Isabella Isotta</span><span>22 Mar</span></div>
+        </a>
+      </li>
+
+      <li class="post-row">
+        <button class="save-btn" data-slug="post-resource-dwarkesh" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-resource-dwarkesh.html" class="row-link" data-slug="post-resource-dwarkesh">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-agents);"></span>
+              <span>Agents &amp; Iteration</span>
+              <span class="meta-sep">·</span>
+              <span>Resource</span>
+              <span class="meta-sep">·</span>
+              <span>15 March 2026</span>
+            </div>
+            <h3>Dario Amodei on Dwarkesh: "We are near the end of the exponential"</h3>
+            <p class="excerpt">2h 22m. Two exponentials (technical capability, economic adoption), the Anthropic investment paradox, revenue ramp $0 → $100M → $1B → $9-10B in three years. Whole conversation maps onto INSEAD frameworks if you're paying attention.</p>
+            <div class="hashtags"><span>#anthropic</span><span>#podcast</span><span>#two-exponentials</span></div>
+          </div>
+          <div class="row-side"><span class="author">via Isabella</span><span>15 Mar</span></div>
+        </a>
+      </li>
+
+      <li class="post-row">
+        <button class="save-btn" data-slug="post-resource-agent-playbook" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg></button>
+        <a href="post-resource-agent-playbook.html" class="row-link" data-slug="post-resource-agent-playbook">
+          <div>
+            <div class="post-meta-row">
+              <span class="cat-dot" style="background: var(--cat-apps);"></span>
+              <span>Building Apps</span>
+              <span class="meta-sep">·</span>
+              <span>Resource</span>
+              <span class="meta-sep">·</span>
+              <span>10 March 2026</span>
+            </div>
+            <h3>The new way of building AI agents — April 2026 playbook</h3>
+            <p class="excerpt">"A chatbot waits for your next message. An agent gets a goal, makes a plan, uses tools, checks what happened, adjusts, and keeps going until the work is done or it needs your help." Anti-hype, very specific, the most actionable on-ramp I've seen.</p>
+            <div class="hashtags"><span>#agents</span><span>#getting-started</span><span>#worth-reading</span></div>
+          </div>
+          <div class="row-side"><span class="author">via Isabella</span><span>10 Mar</span></div>
+        </a>
+      </li>
+
+    </ul>
+
+    
+  </section>
+
+</main>
+
+<footer class="site">
+  INSEAD AI Club Knowledge Hub · Cohort 26D · Mockup
+</footer>
+
+<script>
+(function () {
+  const slug = (s) => s.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
+
+  // Tag every post-row with its category + type slugs, derived from meta-row text
+  document.querySelectorAll('.post-row').forEach(row => {
+    const spans = row.querySelectorAll('.post-meta-row > span');
+    // structure: [dot, category-text, sep, type-text, sep, date-text]
+    let category = '', type = '';
+    spans.forEach(s => {
+      if (s.classList.contains('cat-dot') || s.classList.contains('meta-sep')) return;
+      const txt = s.textContent.trim();
+      if (!category) category = slug(txt);
+      else if (!type) type = slug(txt);
+    });
+    row.dataset.category = category;
+    row.dataset.type = type;
+  });
+
+  let activeCategory = 'all';
+  let activeType = 'all';
+  const countEl = document.querySelector('main .feed div[style*="End of feed"]');
+
+  const apply = () => {
+    let visible = 0;
+    document.querySelectorAll('.post-row').forEach(row => {
+      const catOk = activeCategory === 'all' || row.dataset.category === activeCategory;
+      const typeOk = activeType === 'all' || row.dataset.type === activeType;
+      const show = catOk && typeOk;
+      row.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    if (countEl) {
+      const filterDesc =
+        activeCategory === 'all' && activeType === 'all'
+          ? `${visible} posts`
+          : `${visible} match · clear filters`;
+      countEl.textContent = `End of feed · ${filterDesc}`;
+      countEl.style.cursor = (activeCategory !== 'all' || activeType !== 'all') ? 'pointer' : '';
+    }
+    // Update chip active states
+    const cats = ['all','workflow-automation','building-apps','agents-iteration','general-config'];
+    const types = ['all','how-to','tool','skill','resource'];
+    document.querySelectorAll('.filter-row .chip:not(.chip-ghost)').forEach((c, i) => {
+      c.classList.toggle('active', cats[i] === activeCategory);
+    });
+    document.querySelectorAll('.filter-row .chip.chip-ghost').forEach((c, i) => {
+      c.classList.toggle('active', types[i] === activeType);
+    });
+    // Sync URL
+    const params = new URLSearchParams();
+    if (activeCategory !== 'all') params.set('category', activeCategory);
+    if (activeType !== 'all') params.set('type', activeType);
+    const qs = params.toString();
+    history.replaceState(null, '', qs ? `?${qs}` : window.location.pathname);
+  };
+
+  // Wire category cards
+  document.querySelectorAll('.cat-card[data-filter]').forEach(card => {
+    card.addEventListener('click', e => {
+      e.preventDefault();
+      activeCategory = activeCategory === card.dataset.filter ? 'all' : card.dataset.filter;
+      apply();
+      document.querySelector('.feed').scrollIntoView({ behavior: 'smooth', block: 'start' });
+    });
+  });
+
+  // Wire category chips
+  const catChips = document.querySelectorAll('.filter-row .chip:not(.chip-ghost)');
+  const catSlugs = ['all','workflow-automation','building-apps','agents-iteration','general-config'];
+  catChips.forEach((chip, i) => {
+    chip.addEventListener('click', () => {
+      activeCategory = catSlugs[i];
+      apply();
+    });
+  });
+
+  // Wire type chips
+  const typeChips = document.querySelectorAll('.filter-row .chip.chip-ghost');
+  const typeSlugs = ['all','how-to','tool','skill','resource'];
+  typeChips.forEach((chip, i) => {
+    chip.addEventListener('click', () => {
+      activeType = typeSlugs[i];
+      apply();
+    });
+  });
+
+  // Click "End of feed · N match · clear filters" to reset
+  if (countEl) {
+    countEl.addEventListener('click', () => {
+      if (activeCategory === 'all' && activeType === 'all') return;
+      activeCategory = 'all';
+      activeType = 'all';
+      apply();
+    });
+  }
+
+  // Read initial state from URL
+  const params = new URLSearchParams(window.location.search);
+  if (params.get('category')) activeCategory = params.get('category');
+  if (params.get('type')) activeType = params.get('type');
+  apply();
+})();
+</script>
+
+</body>
+</html>

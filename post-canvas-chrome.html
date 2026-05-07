@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Canvas the Chrome way — Chris Johnson</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="theme.js"></script>
+<script src="saves.js"></script>
+</head>
+<body>
+
+<div class="demo-banner">Mockup <span>Clickable demo, nothing here is live yet</span></div>
+
+<header class="site">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      INSEAD AI Club Knowledge Hub
+    </a>
+    <nav>
+      <a href="index.html" class="active">Feed</a>
+      <a href="people.html">People</a>
+      <a href="saved.html">Saved</a>
+      <a href="new-post.html">Submit</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" aria-label="Search">⌕</button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme">☾</button>
+      <a href="login.html" class="btn btn-text">Sign in</a>
+      <a href="new-post.html" class="btn btn-primary">Share something</a>
+    </div>
+  </div>
+</header>
+
+<main class="narrow">
+
+  <div class="breadcrumb"><a href="index.html">Feed</a><span class="sep">/</span><a href="#">General Config</a><span class="sep">/</span>Canvas via Chrome MCP</div>
+
+  <header class="post-page-header">
+    <span class="category-eyebrow"><span class="dot" style="background: var(--cat-config);"></span>General Config · How-to</span>
+    <h1>Canvas the Chrome way: yeah it's compute-heavy, here's why I went there anyway</h1>
+
+    <div class="byline">
+      <span class="avatar">CJ</span>
+      <span class="author-name"><a href="people-chris.html">Chris Johnson</a></span>
+      <span class="meta-sep">·</span>
+      <span>18 April 2026</span>
+      <span class="meta-sep">·</span>
+      <span>3 min read</span>
+    </div>
+
+    <div class="hashtag-row">
+      <a href="#">#canvas</a>
+      <a href="#">#chrome-mcp</a>
+      <a href="#">#trade-offs</a>
+    </div>
+    <button class="save-btn-text" data-slug="post-canvas-chrome" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><span class="save-label">Save</span></button>
+  </header>
+
+  <article class="post-body">
+    <p>Pretty cool, going to set this up — that was the energy on the group chat after Isabella shared her Canvas Sync. I tried it. Hit walls. Tried Playwright. Didn't love it. Ended up using Chrome MCP through the actual session and I'm sticking with it.</p>
+
+    <p>Yeah, just chrome integration sadly. It's quite long / compute-intense. It also just works without me maintaining an auth chain.</p>
+
+    <h2>Why not the Canvas API</h2>
+    <p>Tried this first. The API exists but the token isn't easy to get hold of when you're not an admin, and even when you do the docs are out of date. Spent two hours, decided to try something else.</p>
+
+    <h2>Why not Playwright</h2>
+    <p>Played with Isabella's setup. It's elegant — but it requires me to keep an auth chain alive, deal with selector changes when ADFS swaps templates, and run an unattended Python script. Three things to maintain. Each one is a future headache.</p>
+
+    <h2>What Chrome MCP gets you</h2>
+    <ul>
+      <li><strong>Real session, real cookies.</strong> Whatever I'm logged into in Chrome is what Claude sees. No auth code at all.</li>
+      <li><strong>It's a conversation, not a script.</strong> "Pull all the new readings from this week" works. "Pull all the new readings from this week and tag the ones from professors who actually grade tightly" also works.</li>
+      <li><strong>Visual confirmation.</strong> You watch it happen in your real browser. If something looks wrong you stop it.</li>
+    </ul>
+
+    <h2>What it costs</h2>
+    <ul>
+      <li><strong>Compute.</strong> Each interaction reads the page, plans, acts, reads again. A morning sync is maybe 3,000-5,000 tokens of context vs the negligible cost of an API call.</li>
+      <li><strong>Time.</strong> 3-5 minutes for a sync that'd take Playwright 30 seconds.</li>
+      <li><strong>Attention.</strong> Has to run while my Chrome is open. Can't be a 7:30am cron.</li>
+    </ul>
+
+    <h2>Why I prefer it anyway</h2>
+    <p>I don't need it to run unattended at dawn. I need it to run when I sit down to study, in 90 seconds, while I make coffee. The trade-off goes the other way for that use case.</p>
+
+    <p>The honest version: Isabella's approach is engineering. Mine is a power-user prompt. Both work. Pick the one that matches how you actually live.</p>
+  </article>
+
+  <section class="comments">
+    <h3>4 comments</h3>
+
+    <div class="comment">
+      <span class="avatar">II</span>
+      <div class="body">
+        <div class="head"><span class="name">Isabella Isotta</span><span class="time">18 Apr · 11:30</span></div>
+        <p>"engineering vs power-user prompt" — bahaha this is the framing!! ppl get stuck on which is "better" when actually they solve diff problems</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">18 Apr · 12:18</span></div>
+        <p>cman chris. saving for the ai club intro session — perfect example of "pick the workflow that works not the elegant one"</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">TR</span>
+      <div class="body">
+        <div class="head"><span class="name">Tom Rees</span><span class="time">18 Apr · 14:55</span></div>
+        <p>finally / a sensible voice on this group</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">CJ</span>
+      <div class="body">
+        <div class="head"><span class="name">Chris Johnson</span><span class="time">18 Apr · 17:02</span></div>
+        <p>Ahah Tom that is a low bar in here</p>
+      </div>
+    </div>
+
+    <div class="comment-form">
+      <span class="avatar">YOU</span>
+      <textarea placeholder="Add a comment..."></textarea>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  INSEAD AI Club Knowledge Hub · Cohort 26D · Mockup
+</footer>
+
+</body>
+</html>

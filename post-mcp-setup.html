@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>MCP server setup — Isabella Isotta</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="theme.js"></script>
+<script src="saves.js"></script>
+</head>
+<body>
+
+<div class="demo-banner">Mockup <span>Clickable demo, nothing here is live yet</span></div>
+
+<header class="site">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      INSEAD AI Club Knowledge Hub
+    </a>
+    <nav>
+      <a href="index.html" class="active">Feed</a>
+      <a href="people.html">People</a>
+      <a href="saved.html">Saved</a>
+      <a href="new-post.html">Submit</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" aria-label="Search">⌕</button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme">☾</button>
+      <a href="login.html" class="btn btn-text">Sign in</a>
+      <a href="new-post.html" class="btn btn-primary">Share something</a>
+    </div>
+  </div>
+</header>
+
+<main class="narrow">
+
+  <div class="breadcrumb"><a href="index.html">Feed</a><span class="sep">/</span><a href="#">General Config</a><span class="sep">/</span>MCP setup</div>
+
+  <header class="post-page-header">
+    <span class="category-eyebrow"><span class="dot" style="background: var(--cat-config);"></span>General Config · How-to</span>
+    <h1>Setting up Claude Code MCP servers (the bits that actually break)</h1>
+
+    <div class="byline">
+      <span class="avatar">II</span>
+      <span class="author-name"><a href="people-isabella.html">Isabella Isotta</a></span>
+      <span class="meta-sep">·</span>
+      <span>22 March 2026</span>
+      <span class="meta-sep">·</span>
+      <span>4 min read</span>
+    </div>
+
+    <div class="hashtag-row">
+      <a href="#">#mcp-servers</a>
+      <a href="#">#setup</a>
+      <a href="#">#gotchas</a>
+    </div>
+    <button class="save-btn-text" data-slug="post-mcp-setup" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><span class="save-label">Save</span></button>
+  </header>
+
+  <article class="post-body">
+    <p>MCP setup is one of those things where every individual step is fine, every individual step has a step that quietly went wrong without telling you, and the whole thing only works once they all line up. Here's the order I'd recommend and the bits that catch everyone the first time.</p>
+
+    <h2>The four MCP servers worth installing day one</h2>
+    <ul>
+      <li><strong>Playwright</strong> — browser automation. Lets Claude open URLs, click, fill forms, take screenshots.</li>
+      <li><strong>Chrome MCP</strong> (Claude in Chrome) — different from Playwright. Drives your <em>actual</em> Chrome with your real session/cookies. Lets you skip auth chains.</li>
+      <li><strong>OneNote / Microsoft 365</strong> — read your INSEAD email, calendar, files. Quietly the biggest unlock.</li>
+      <li><strong>Filesystem</strong> — read and write files. Ships with Claude Code, but check it's enabled.</li>
+    </ul>
+
+    <h2>The MCP config file</h2>
+    <p>It's <code>~/.claude.json</code>. Not <code>~/.cursor.json</code>, not your project's <code>.mcp.json</code>. Servers go in the <code>mcpServers</code> object. Reading the wrong file is the #1 reason setups silently fail.</p>
+
+    <pre><code>{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp"]
+    }
+  }
+}</code></pre>
+
+    <h2>The five things that always break</h2>
+    <ol>
+      <li><strong>"Restart Claude Code"</strong> means quit fully (cmd+Q), not close the window. MCP servers register at startup. A reopened window still has the old state.</li>
+      <li><strong>Permissions on Mac.</strong> First Playwright run prompts for Accessibility access in System Settings. Grant it. If you didn't see the prompt, it's because your system muted it — go to Privacy &amp; Security and add Claude Code manually.</li>
+      <li><strong>Browsers not installed.</strong> <code>npm install -g @playwright/mcp</code> doesn't install the browsers. <code>npx playwright install</code> does. Both are required.</li>
+      <li><strong>Chrome MCP is account-bound.</strong> The Claude browser extension only works if your Chrome account is the same as your Claude.ai account. Mismatched accounts fail silently.</li>
+      <li><strong>OneNote / MS365 needs OAuth.</strong> First connection opens a browser tab to authenticate. If you're on a corporate machine with extra MFA, this can take three attempts. Persist.</li>
+    </ol>
+
+    <h2>How to check it's working</h2>
+    <p>Type into Claude Code: <em>"open google.com and screenshot it"</em>. If a screenshot comes back, Playwright is good. If you get "I can't access the browser" — go back to the restart step.</p>
+
+    <p>For Chrome MCP: <em>"what's on my current Chrome tab?"</em>. If it tells you, you're good.</p>
+
+    <p>For OneNote: <em>"summarise my last 5 emails"</em>. If it asks you to sign in, sign in. If it then summarises, you're good.</p>
+
+    <h2>Once it works</h2>
+    <p>The world opens up. The first thing I built after MCP setup was the Canvas sync. Took an evening. Without MCP, would have taken a weekend.</p>
+  </article>
+
+  <section class="comments">
+    <h3>3 comments</h3>
+
+    <div class="comment">
+      <span class="avatar">CJ</span>
+      <div class="body">
+        <div class="head"><span class="name">Chris Johnson</span><span class="time">22 Mar · 16:14</span></div>
+        <p>The "permissions on Mac" thing is the one that gets everyone. Worth flagging in caps tbh.</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">22 Mar · 18:01</span></div>
+        <p>cman. good post. should be in the AI club onboarding pack</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">TR</span>
+      <div class="body">
+        <div class="head"><span class="name">Tom Rees</span><span class="time">23 Mar · 09:20</span></div>
+        <p>i ahve exhausted myself from doing nothing for 5 days except play with claude / mcp setup is what broke me / will retry with this guide</p>
+      </div>
+    </div>
+
+    <div class="comment-form">
+      <span class="avatar">YOU</span>
+      <textarea placeholder="Add a comment..."></textarea>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  INSEAD AI Club Knowledge Hub · Cohort 26D · Mockup
+</footer>
+
+</body>
+</html>

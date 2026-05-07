@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>The evaluate skill — Freddie Chambers</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="theme.js"></script>
+<script src="saves.js"></script>
+</head>
+<body>
+
+<div class="demo-banner">Mockup <span>Clickable demo, nothing here is live yet</span></div>
+
+<header class="site">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      INSEAD AI Club Knowledge Hub
+    </a>
+    <nav>
+      <a href="index.html" class="active">Feed</a>
+      <a href="people.html">People</a>
+      <a href="saved.html">Saved</a>
+      <a href="new-post.html">Submit</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" aria-label="Search">⌕</button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme">☾</button>
+      <a href="login.html" class="btn btn-text">Sign in</a>
+      <a href="new-post.html" class="btn btn-primary">Share something</a>
+    </div>
+  </div>
+</header>
+
+<main class="narrow">
+
+  <div class="breadcrumb"><a href="index.html">Feed</a><span class="sep">/</span><a href="#">Agents &amp; Iteration</a><span class="sep">/</span>The evaluate skill</div>
+
+  <header class="post-page-header">
+    <span class="category-eyebrow"><span class="dot" style="background: var(--cat-agents);"></span>Agents &amp; Iteration · Skill</span>
+    <h1>The evaluate skill — a generator/evaluator loop for design</h1>
+
+    <div class="byline">
+      <span class="avatar">FC</span>
+      <span class="author-name"><a href="people-freddie.html">Freddie Chambers</a></span>
+      <span class="meta-sep">·</span>
+      <span>04 April 2026</span>
+      <span class="meta-sep">·</span>
+      <span>5 min read</span>
+    </div>
+
+    <div class="hashtag-row">
+      <a href="#">#multi-agent</a>
+      <a href="#">#design</a>
+      <a href="#">#skill-file</a>
+      <a href="#">#playwright</a>
+    </div>
+
+    <a href="#" class="attachment-pill">📎 evaluate.zip · drop into ~/.claude/skills/</a>
+    <button class="save-btn-text" data-slug="post-evaluate-skill" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><span class="save-label">Save</span></button>
+  </header>
+
+  <article class="post-body">
+    <p>The method is built on one insight: <strong>the AI that writes the code can't objectively judge it.</strong> It's too close to its own work. So we split the process into two roles, a generator and an evaluator, and make them iterate until the result is genuinely good.</p>
+
+    <h2>How it works</h2>
+    <p>The orchestrator (you, in your main session) writes the code, commits, and pushes. Then it spawns a fresh evaluator subagent that has <em>zero memory</em> of previous evaluations or the code that produced what it's looking at. The evaluator interacts with the live app through Playwright, scores it against weighted criteria, and returns structured feedback.</p>
+    <p>The orchestrator parses the scores, decides whether to refine or pivot, and loops.</p>
+
+    <pre><code>brief
+  → ORCHESTRATOR (writes code, commits, pushes)
+        ↓
+  → EVALUATOR (fresh subagent, no source code, scores via Playwright)
+        ↓
+  → ORCHESTRATOR (parses scores, refines or pivots)
+        ↓
+  loop until threshold met or max iterations</code></pre>
+
+    <h2>The weights are the philosophy</h2>
+    <p>Default weights: design 0.35, originality 0.30, coherence 0.20, craft 0.15. <strong>Originality matters more than polish.</strong> A highly polished but generic dashboard scores lower than a rougher UI with genuine design identity.</p>
+
+    <h2>Strong vs weak criteria</h2>
+    <p>Strong criteria are specific and testable. Weak criteria are generic mush.</p>
+    <blockquote>"Is the UX intuitive?" tells the evaluator nothing. "Can a new user complete their first booking in under 3 clicks?" gives it something to actually test.</blockquote>
+
+    <h2>The fresh-evaluator rule</h2>
+    <p>The evaluator is spawned fresh each iteration. This is deliberate. It prevents the evaluator from anchoring on previous scores or being lenient because it saw effort. When you let evaluators carry context, they fall in love with their own framing and stop noticing new problems.</p>
+
+    <h2>When to refine vs pivot</h2>
+    <p><strong>Refine</strong> when the composite improved 0.5+ since last iteration and the critique is about polish, not structure. <strong>Pivot</strong> when scores plateau under 6/10 or the critique is structural ("this looks like every other dashboard"). A pivot means changing the layout model, the visual metaphor, the density, or the typography approach. Swapping hex values is not a pivot.</p>
+
+    <h2>Stopping conditions</h2>
+    <ul>
+      <li>Threshold met (default: all criteria ≥ 8/10)</li>
+      <li>Plateau (3 iterations &lt; 0.3 improvement)</li>
+      <li>Branding decision blocks meaningful progress</li>
+      <li>Max iterations reached</li>
+    </ul>
+
+    <p>It's an MIT-licensed slash command. Drop it into your <code>.claude/skills/</code> folder and call it with <code>/evaluate</code>. Fork the critic prompts for your domain.</p>
+  </article>
+
+  <section class="comments">
+    <h3>7 comments</h3>
+
+    <div class="comment">
+      <span class="avatar">TR</span>
+      <div class="body">
+        <div class="head"><span class="name">Tom Rees</span><span class="time">04 Apr · 11:47</span></div>
+        <p>there is something about claude writing his own prompts to use in other claude agents which pleases me greatly</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">CJ</span>
+      <div class="body">
+        <div class="head"><span class="name">Chris Johnson</span><span class="time">04 Apr · 14:23</span></div>
+        <p>Question: do you cap the iterations? What if the evaluator never says "no further changes"?</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">04 Apr · 14:55</span></div>
+        <p>yes hard cap at 6 rounds. round 3 is usually 80% of the value, rounds 4-6 diminishing, beyond 6 you're often making it worse</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">04 Apr · 14:58</span></div>
+        <p>also hand on heart this is the best thing ive built. fresh-evaluator pattern is going into every project from now on. like what the actual fooook</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">TR</span>
+      <div class="body">
+        <div class="head"><span class="name">Tom Rees</span><span class="time">04 Apr · 18:31</span></div>
+        <p>i've spent most the day wrestling with claude design / i think it's pretty shit / cursor is 10x better</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">04 Apr · 18:31</span></div>
+        <p>ITS V1</p>
+      </div>
+    </div>
+
+
+    <div class="comment">
+      <span class="avatar">II</span>
+      <div class="body">
+        <div class="head"><span class="name">Isabella Isotta</span><span class="time">04 Apr · 22:00</span></div>
+        <p>freddie — fresh-evaluator rule is the actual unlock. would have been useful for me when i always tell you the opposite of what i mean.. wish i could iterate the conversations in my life. on brand tbh. great skill</p>
+      </div>
+    </div>
+
+    <div class="comment-form">
+      <span class="avatar">YOU</span>
+      <textarea placeholder="Add a comment..."></textarea>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  INSEAD AI Club Knowledge Hub · Cohort 26D · Mockup
+</footer>
+
+</body>
+</html>

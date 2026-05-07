@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Voice-note pipeline — Freddie Chambers</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="theme.js"></script>
+<script src="saves.js"></script>
+</head>
+<body>
+
+<div class="demo-banner">Mockup <span>Clickable demo, nothing here is live yet</span></div>
+
+<header class="site">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      INSEAD AI Club Knowledge Hub
+    </a>
+    <nav>
+      <a href="index.html" class="active">Feed</a>
+      <a href="people.html">People</a>
+      <a href="saved.html">Saved</a>
+      <a href="new-post.html">Submit</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn" aria-label="Search">⌕</button>
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme">☾</button>
+      <a href="login.html" class="btn btn-text">Sign in</a>
+      <a href="new-post.html" class="btn btn-primary">Share something</a>
+    </div>
+  </div>
+</header>
+
+<main class="narrow">
+
+  <div class="breadcrumb"><a href="index.html">Feed</a><span class="sep">/</span><a href="#">Workflow Automation</a><span class="sep">/</span>Voice-note pipeline</div>
+
+  <header class="post-page-header">
+    <span class="category-eyebrow"><span class="dot" style="background: var(--cat-workflow);"></span>Workflow Automation · How-to</span>
+    <h1>The voice-note pipeline behind the personal-assistant setup</h1>
+
+    <div class="byline">
+      <span class="avatar">FC</span>
+      <span class="author-name"><a href="people-freddie.html">Freddie Chambers</a></span>
+      <span class="meta-sep">·</span>
+      <span>02 April 2026</span>
+      <span class="meta-sep">·</span>
+      <span>5 min read</span>
+    </div>
+
+    <div class="hashtag-row">
+      <a href="#">#voice-notes</a>
+      <a href="#">#telegram</a>
+      <a href="#">#mac-mini</a>
+      <a href="#">#personal-assistant</a>
+    </div>
+    <button class="save-btn-text" data-slug="post-voice-pipeline" aria-label="Save post"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg><span class="save-label">Save</span></button>
+  </header>
+
+  <article class="post-body">
+    <p>I've built myself a personal assistant out of Obsidian (a markdown note app), Claude Code (Anthropic's AI running in the terminal), and a little Mac Mini at home that stays on 24/7. I hit a button on my phone, dictate a thought, and by the time I put the phone down, the AI has read the context, checked my calendar, drafted whatever needs drafting, and queued up an action for me to approve from Telegram.</p>
+
+    <p>It's less a note-taking app than a small staff of one.</p>
+
+    <h2>What it actually feels like</h2>
+    <p>I type into my phone: "Tennis with Adrien Harnay" and hit send. About two minutes later my Telegram buzzes:</p>
+
+    <blockquote>Here are the top 5 slots with Adrien over the next 3 weeks…</blockquote>
+
+    <p>Pick one. Slot booked. Calendar invites sent. Done in a single message exchange.</p>
+
+    <h2>The Mac Mini is the butler</h2>
+    <p>It's always on, always logged in, and it quietly handles the stuff that doesn't need me — enriching captures, re-scoring tickets, answering Telegram, sending my morning briefing podcast. My laptop does desk work. The Mac Mini does everything else.</p>
+
+    <h2>Tasks have two priority dimensions</h2>
+    <p>Most task apps have one priority field: P1, P2, P3, P4. Mine has two:</p>
+    <ul>
+      <li><strong>Priority</strong> (I set this): how <em>important</em> is this?</li>
+      <li><strong>Urgency</strong> (machine sets this, daily): how <em>time-sensitive</em> is this <em>right now</em>?</li>
+    </ul>
+    <p>Urgency drifts as deadlines approach. Priority is stable. The product of the two is what gets surfaced each morning.</p>
+
+    <h2>The /draft skill</h2>
+    <p>There's a skill called <code>/draft</code>. It does one thing: write a message that sounds like me. Before drafting anything, it reads a style guide I built from 25 real emails I've sent.</p>
+
+    <p>Key rules: no em dashes, British English, "v" for "very", lead with the idea not yourself, write then cut by a third, never re-explain someone's own work back to them.</p>
+
+    <h2>The composition is the point</h2>
+    <p>Tennis booking isn't Playwright <em>or</em> Calendar <em>or</em> CRM <em>or</em> drafting — it's all four stitched together in 90 seconds. Class prep is Playwright + Canvas + PDF parsing + ElevenLabs + vault writing. Each capability is ordinary. The combination is what makes it feel different.</p>
+
+    <h2>What it costs me</h2>
+    <p>The effect, honestly, is that I delegate about 2-3 hours of work a day. Most of that used to be friction — filing, searching, chasing, formatting, re-explaining — not the work that actually mattered. Now I get to the interesting part faster.</p>
+
+    <p>Full writeup originally for George Posse: <a href="#">How My Note System Works</a>.</p>
+  </article>
+
+  <section class="comments">
+    <h3>8 comments</h3>
+
+    <div class="comment">
+      <span class="avatar">II</span>
+      <div class="body">
+        <div class="head"><span class="name">Isabella Isotta</span><span class="time">02 Apr · 09:14</span></div>
+        <p>"two hours of work a day delegated" is WILD. how much of that is just the mac mini being always-on? could u do this w/o it</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">02 Apr · 10:48</span></div>
+        <p>most of it. mac mini is the unlock. without it u need a server somewhere or u have to remember to leave laptop open. mac mini was £600 and runs on like 5 watts</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">02 Apr · 10:51</span></div>
+        <p>holy balls every time i think about how this all stitches together i still cant get over it. the composition is literally the point. best thing ive built tbh</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">TR</span>
+      <div class="body">
+        <div class="head"><span class="name">Tom Rees</span><span class="time">02 Apr · 13:30</span></div>
+        <p>basically freddies whole system is essentially available to download online / and hes reluctant to admit it but i suspect with some fine tuning it will be almost as good</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">02 Apr · 14:11</span></div>
+        <p>absolutely not</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">TR</span>
+      <div class="body">
+        <div class="head"><span class="name">Tom Rees</span><span class="time">02 Apr · 16:45</span></div>
+        <p>draft skill nearly auto-sent a 4am text to an ex i was politely not in touch with anymore. caught it on the way out. claude u cheeky fuck</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">FC</span>
+      <div class="body">
+        <div class="head"><span class="name">Freddie Chambers</span><span class="time">02 Apr · 16:52</span></div>
+        <p>be careful out there guys</p>
+      </div>
+    </div>
+
+    <div class="comment">
+      <span class="avatar">CJ</span>
+      <div class="body">
+        <div class="head"><span class="name">Chris Johnson</span><span class="time">02 Apr · 17:22</span></div>
+        <p>The two-priority thing is the part I'm stealing. Bain had a thousand frameworks for prioritisation and none of them split urgency from importance properly.</p>
+      </div>
+    </div>
+
+    <div class="comment-form">
+      <span class="avatar">YOU</span>
+      <textarea placeholder="Add a comment..."></textarea>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  INSEAD AI Club Knowledge Hub · Cohort 26D · Mockup
+</footer>
+
+</body>
+</html>
