@@ -715,12 +715,12 @@
           <tr><td><a href="#s4">Strategic positioning</a></td><td><a href="#s4">§4</a></td></tr>
           <tr class="part-start">
             <td rowspan="5"><strong>2. Structure of platform</strong></td>
-            <td><a href="#s5">What types of content can be shared?</a></td>
+            <td><a href="#s5">What is the platform — what features does it have?</a></td>
             <td><a href="#s5">§5</a></td>
           </tr>
-          <tr><td><a href="#s6">What categories of content can be shared?</a></td><td><a href="#s6">§6</a></td></tr>
-          <tr><td><a href="#s7">Who are the contributor types?</a></td><td><a href="#s7">§7</a></td></tr>
-          <tr><td><a href="#s8">What features have we built into the mockup?</a></td><td><a href="#s8">§8</a></td></tr>
+          <tr><td><a href="#s6">What types of content can be shared?</a></td><td><a href="#s6">§6</a></td></tr>
+          <tr><td><a href="#s7">What categories of content can be shared?</a></td><td><a href="#s7">§7</a></td></tr>
+          <tr><td><a href="#s8">Who are the contributor types?</a></td><td><a href="#s8">§8</a></td></tr>
           <tr><td><a href="#s9">What are the platform options &amp; trade-offs?</a></td><td><a href="#s9">§9</a></td></tr>
           <tr class="part-start">
             <td rowspan="2"><strong>3. Roadmap &amp; decisions</strong></td>
@@ -767,7 +767,7 @@
   <section class="plan-section" id="s2">
     <div class="section-num">§2</div>
     <h2>The problem we're solving</h2>
-    <div class="leadin">Four distinct pain points. Each has evidence, an existing workaround that doesn't work, and a cost of doing nothing. The Hub addresses all four; no single existing channel does. §3 then drills into how each of these pains lands on each stakeholder.</div>
+    <div class="leadin">Five distinct pain points. Each has evidence and an existing workaround that doesn't work. The Hub addresses all five; no single existing channel does. §3 then drills into how each of these pains lands on each stakeholder.</div>
     <div class="plan-table-wrap">
       <table class="plan-table">
         <thead>
@@ -812,7 +812,7 @@
   <section class="plan-section" id="s3">
     <div class="section-num">§3</div>
     <h2>Stakeholders and their needs</h2>
-    <div class="leadin">The four problems above show up differently for each group. The Hub has to serve all six stakeholders with one product, or it ends up serving the AI Club crowd and ignoring the rest — which is the failure mode it's meant to fix.</div>
+    <div class="leadin">The five problems above show up differently for each group. The Hub has to serve all six stakeholders with one product, or it ends up serving the AI Club crowd and ignoring the rest — which is the failure mode it's meant to fix.</div>
     <div class="plan-table-wrap">
       <table class="plan-table">
         <thead>
@@ -924,12 +924,40 @@
   <div class="part-divider">
     <div class="part-eyebrow">Part 2</div>
     <h2>Structure of platform</h2>
-    <p>What gets posted, how it's organised, who posts under what label, and what features the mockup already demonstrates.</p>
+    <p>What the platform is, what gets posted, how it's organised, who posts, and where it could live.</p>
   </div>
 
-  <!-- ========== §5 CONTENT TYPES ========== -->
+  <!-- ========== §5 FEATURES IN MOCKUP (frames the platform) ========== -->
   <section class="plan-section" id="s5">
     <div class="section-num">§5</div>
+    <h2>What the platform is — features built into the mockup</h2>
+    <div class="leadin">A content hub. A feed of posts with views by content type, by category, and by person, plus saves for personal bookmarking and a curated rail for what the AI Club recommends. Eight feature areas are already demonstrated in the clickable mockup — sections §6-§8 then unpack what gets posted, how it's grouped, and who posts.</div>
+    <div class="plan-table-wrap">
+      <table class="plan-table">
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Components in the mockup</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Shell</strong></td><td>Top nav (Feed · People · Saved · Submit) · brand mark · sign-in stub · search icon stub · light/dark theme toggle · mobile responsive</td></tr>
+          <tr><td><strong>Feed</strong></td><td>Chronological post list · filter chips (category · content type)</td></tr>
+          <tr><td><strong>Featured rail</strong></td><td>"Recommended by AI Club" — admin-curated, max 3 · ★ marker on cards across feed and profiles</td></tr>
+          <tr><td><strong>Posting</strong></td><td>Submit page with 4-type segmented control (How-to · Tool · Skill · Resource) · per-type form fields</td></tr>
+          <tr><td><strong>Post pages</strong></td><td>Distinct layout per content type · comment thread</td></tr>
+          <tr><td><strong>People</strong></td><td>Grid of cards (avatar · name · role tag · bio · contribution breakdown · ★ count) · individual profile pages</td></tr>
+          <tr><td><strong>Saves</strong></td><td>Save toggle on cards · "Saved" page (localStorage in mockup)</td></tr>
+          <tr><td><strong>Visual identity</strong></td><td>Fontainebleau green palette · Geist sans · JetBrains Mono accent</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <a class="live-link" href="https://izzyisotta.github.io/insead-ai-club-knowledge-hub/" target="_blank" rel="noopener">→ Live mockup at izzyisotta.github.io/insead-ai-club-knowledge-hub</a>
+  </section>
+
+  <!-- ========== §6 CONTENT TYPES ========== -->
+  <section class="plan-section" id="s6">
+    <div class="section-num">§6</div>
     <h2>Content types</h2>
     <div class="leadin">Four core types, each with a distinct primary artefact. A fifth type (video) is an open question for discovery.</div>
     <div class="role-grid">
@@ -977,9 +1005,9 @@
     <div class="note-card note-question"><strong>Open question:</strong> any other types we've missed?</div>
   </section>
 
-  <!-- ========== §6 CONTENT CATEGORIES ========== -->
-  <section class="plan-section" id="s6">
-    <div class="section-num">§6</div>
+  <!-- ========== §7 CONTENT CATEGORIES ========== -->
+  <section class="plan-section" id="s7">
+    <div class="section-num">§7</div>
     <h2>Content categories</h2>
     <div class="leadin">Four top-level categories, goal-oriented (what you're trying to do) rather than tool-oriented (what you're using). A faculty/research category is an open question for discovery.</div>
     <div class="plan-table-wrap">
@@ -1001,9 +1029,9 @@
     <div class="note-card note-question"><strong>Open question:</strong> any other categories we've missed — and is goal-oriented (what you're trying to do) the best way to frame the split, or would tool-oriented / audience-oriented work better?</div>
   </section>
 
-  <!-- ========== §7 CONTRIBUTOR TYPES ========== -->
-  <section class="plan-section" id="s7">
-    <div class="section-num">§7</div>
+  <!-- ========== §8 CONTRIBUTOR TYPES ========== -->
+  <section class="plan-section" id="s8">
+    <div class="section-num">§8</div>
     <h2>Contributor types</h2>
     <div class="leadin">Each post has an author with a role label shown next to their name (in the people grid + on post bylines). Core types are derived from the stakeholder groups in §3, flattened where the platform doesn't need the distinction.</div>
     <div class="card-grid-label">Core types</div>
@@ -1064,34 +1092,6 @@
     </div>
   </section>
 
-  <!-- ========== §8 FEATURES IN MOCKUP ========== -->
-  <section class="plan-section" id="s8">
-    <div class="section-num">§8</div>
-    <h2>Features built into the mockup</h2>
-    <div class="leadin">Eight feature areas already demonstrated in the clickable mockup. Mockup-only items work via localStorage; production stack adds real auth, DB persistence, moderation, and search per Architecture and Operations.</div>
-    <div class="plan-table-wrap">
-      <table class="plan-table">
-        <thead>
-          <tr>
-            <th>Area</th>
-            <th>Components in the mockup</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>Shell</strong></td><td>Top nav (Feed · People · Saved · Submit) · brand mark · sign-in stub · search icon stub · light/dark theme toggle · mobile responsive</td></tr>
-          <tr><td><strong>Feed</strong></td><td>Chronological post list · filter chips (category · content type)</td></tr>
-          <tr><td><strong>Featured rail</strong></td><td>"Recommended by AI Club" — admin-curated, max 3 · ★ marker on cards across feed and profiles</td></tr>
-          <tr><td><strong>Posting</strong></td><td>Submit page with 4-type segmented control (How-to · Tool · Skill · Resource) · per-type form fields</td></tr>
-          <tr><td><strong>Post pages</strong></td><td>Distinct layout per content type · comment thread</td></tr>
-          <tr><td><strong>People</strong></td><td>Grid of cards (avatar · name · role tag · bio · contribution breakdown · ★ count) · individual profile pages</td></tr>
-          <tr><td><strong>Saves</strong></td><td>Save toggle on cards · "Saved" page (localStorage in mockup)</td></tr>
-          <tr><td><strong>Visual identity</strong></td><td>Fontainebleau green palette · Geist sans · JetBrains Mono accent</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <a class="live-link" href="https://izzyisotta.github.io/insead-ai-club-knowledge-hub/" target="_blank" rel="noopener">→ Live mockup at izzyisotta.github.io/insead-ai-club-knowledge-hub</a>
-  </section>
-
   <!-- ========== §9 PLATFORM OPTIONS ========== -->
   <section class="plan-section" id="s9">
     <div class="section-num">§9</div>
@@ -1105,7 +1105,7 @@
         </div>
         <div class="opt-row">
           <div class="opt-label">Pros</div>
-          <div class="opt-text">Full control over UX, branding, data; supports all features in §8; persistent identity; portable</div>
+          <div class="opt-text">Full control over UX, branding, data; supports all features in §5; persistent identity; portable</div>
         </div>
         <div class="opt-row">
           <div class="opt-label">Cons</div>
