@@ -311,6 +311,70 @@
 
   /* Plan TOC link sticky at top? — skip, keep it simple */
 
+  /* === ROADMAP STEP CARDS === */
+  .roadmap-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+    margin: 1rem 0 1.5rem;
+  }
+  .roadmap-step {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.25rem;
+    align-items: start;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.15rem 1.4rem;
+    transition: all 0.15s;
+  }
+  .roadmap-step:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-sm);
+  }
+  .roadmap-step .step-num {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--accent-fg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 1.05rem;
+    flex-shrink: 0;
+    letter-spacing: -0.01em;
+  }
+  .roadmap-step .step-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    min-width: 0;
+  }
+  .roadmap-step .step-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--fg);
+    letter-spacing: -0.005em;
+  }
+  .roadmap-step .step-desc {
+    color: var(--fg-muted);
+    font-size: 0.93rem;
+    line-height: 1.6;
+  }
+  .roadmap-step .step-desc ul {
+    margin: 0.45rem 0 0 1.2rem;
+    padding: 0;
+  }
+  .roadmap-step .step-desc ul li {
+    color: var(--fg-muted);
+    font-size: 0.88rem;
+    margin-bottom: 0.2rem;
+  }
+
   /* === ROLE / CONTRIBUTOR / OPTION CARDS === */
   .card-grid-label {
     font-family: 'JetBrains Mono', monospace;
@@ -782,7 +846,7 @@
         </tbody>
       </table>
     </div>
-    <div class="note-card note-question"><strong>Open questions:</strong> does Video become a fifth type, or do videos embed in How-to Guides? Are there enough videos to justify their own type today?</div>
+    <div class="note-card note-question"><strong>Open question:</strong> any other types we've missed?</div>
   </section>
 
   <!-- ========== §6 CONTENT CATEGORIES ========== -->
@@ -806,6 +870,7 @@
         </tbody>
       </table>
     </div>
+    <div class="note-card note-question"><strong>Open question:</strong> any other categories we've missed — and is goal-oriented (what you're trying to do) the best way to frame the split, or would tool-oriented / audience-oriented work better?</div>
   </section>
 
   <!-- ========== §7 CONTRIBUTOR TYPES ========== -->
@@ -869,7 +934,6 @@
         <div class="role-desc">Only relevant if we accept sponsored content. Currently scoped out per Operations.md.</div>
       </div>
     </div>
-    <div class="note-card note-question"><strong>Open question:</strong> is "AI Club" a contributor type or just a profile tag on a Student? In the mockup it's used as a role label. Could go either way — flag for discovery.</div>
   </section>
 
   <!-- ========== §8 FEATURES IN MOCKUP ========== -->
@@ -931,7 +995,7 @@
           <tr>
             <td><strong>GitHub Pages</strong><br><span style="font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--fg-subtle);">static site, public repo</span></td>
             <td>Free hosting; transparent (open source); fast to ship; familiar to AI Club crowd</td>
-            <td>No native auth, comments, saves, or reactions; not INSEAD-branded; public-only by default</td>
+            <td>No native auth, comments, saves, or reactions; not INSEAD-branded; public-only by default; intimidating to non-technical users — alienates the AI-curious audience the Hub is meant to onboard</td>
             <td>Quick proof of concept</td>
           </tr>
           <tr>
@@ -999,49 +1063,54 @@
     <div class="section-num">§11</div>
     <h2>Phased roadmap</h2>
     <div class="leadin">Research first, then build for engaged users, then expand. Each phase has a clear "ready to move" trigger; we don't progress until the prior phase has worked.</div>
-    <div class="plan-table-wrap">
-      <table class="plan-table">
-        <thead>
-          <tr>
-            <th style="width:30%">Phase</th>
-            <th>What happens</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>1. Research &amp; plan</strong></td>
-            <td>Interview each stakeholder type for use cases; secure engaged faculty buy-in (Adèle / AI Champions); run discovery session</td>
-          </tr>
-          <tr>
-            <td><strong>2. Decide the practicals</strong></td>
-            <td>Pose &amp; answer:
-              <ul style="margin: 0.4rem 0 0 1.2rem;">
-                <li>platform (e.g. own platform vs LMS)</li>
-                <li>domain</li>
-                <li>hosting</li>
-                <li>ownership / continuity</li>
-                <li>INSEAD official involvement</li>
-                <li>access model</li>
-                <li>funding</li>
-                <li>moderation</li>
-                <li>reactions &amp; feed sort</li>
-              </ul>
-            </td>
-          </tr>
-          <tr>
-            <td><strong>3. Build basic platform</strong></td>
-            <td>Build version 1; engaged AI users populate it; iterate from feedback</td>
-          </tr>
-          <tr>
-            <td><strong>4. Wider student rollout</strong></td>
-            <td>Market to and invite wider student body</td>
-          </tr>
-          <tr>
-            <td><strong>5. Long-run additions</strong></td>
-            <td>Everything mentioned earlier: faculty posting, alumni network, partner schools, Singapore campus, possibly research category, possibly video as 5th type</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="roadmap-list">
+      <div class="roadmap-step">
+        <div class="step-num">1</div>
+        <div class="step-body">
+          <div class="step-title">Research &amp; plan</div>
+          <div class="step-desc">Interview each stakeholder type for use cases; secure engaged faculty buy-in (Adèle / AI Champions); run discovery session.</div>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-num">2</div>
+        <div class="step-body">
+          <div class="step-title">Decide the practicals</div>
+          <div class="step-desc">Pose &amp; answer:
+            <ul>
+              <li>platform (e.g. own platform vs LMS)</li>
+              <li>domain</li>
+              <li>hosting</li>
+              <li>ownership / continuity</li>
+              <li>INSEAD official involvement</li>
+              <li>access model</li>
+              <li>funding</li>
+              <li>moderation</li>
+              <li>reactions &amp; feed sort</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-num">3</div>
+        <div class="step-body">
+          <div class="step-title">Build basic platform</div>
+          <div class="step-desc">Build version 1; engaged AI users populate it; iterate from feedback.</div>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-num">4</div>
+        <div class="step-body">
+          <div class="step-title">Wider student rollout</div>
+          <div class="step-desc">Market to and invite wider student body.</div>
+        </div>
+      </div>
+      <div class="roadmap-step">
+        <div class="step-num">5</div>
+        <div class="step-body">
+          <div class="step-title">Long-run additions</div>
+          <div class="step-desc">Everything mentioned earlier: faculty posting, alumni network, partner schools, Singapore campus, possibly research category, possibly video as 5th type.</div>
+        </div>
+      </div>
     </div>
     <div class="note-card"><strong>Operating principle:</strong> don't try to build for everyone in v1. v1 is for the AI Club crowd. The product earns the right to expand.</div>
   </section>
@@ -1096,19 +1165,6 @@
       </table>
     </div>
   </section>
-
-  <!-- ========== SEE ALSO ========== -->
-  <div class="see-also">
-    <h3>See also</h3>
-    <ul>
-      <li><strong>Knowledge Hub – Overview</strong> — current decisions and status (to be updated post-discovery)</li>
-      <li><strong>Knowledge Hub – Build Plan</strong> — phased roadmap for after discovery green-lights</li>
-      <li><strong>Knowledge Hub – Architecture</strong> — technical decisions</li>
-      <li><strong>Knowledge Hub – Operations</strong> — auth, privacy, governance</li>
-      <li><strong>AI Club 26D Manifesto</strong> — the underlying mission this serves</li>
-      <li><strong>INSEAD AI Club – Field Notes (Writeup for Ethan Mollick)</strong> — what's worked so far</li>
-    </ul>
-  </div>
 
 </main>
 
