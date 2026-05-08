@@ -9,8 +9,9 @@
 <script src="theme.js"></script>
 <style>
   /* === PLAN-SPECIFIC LAYOUT === */
+  html { scroll-padding-top: 80px; }
   main.plan-main {
-    max-width: 940px;
+    max-width: 1200px;
     padding: 2.5rem 1.75rem 6rem;
   }
 
@@ -97,10 +98,11 @@
   .plan-section li { margin-bottom: 0.4em; }
   .plan-section li strong { color: var(--fg); }
 
-  /* Lead-in callout (the > **...** at start of each section) */
+  /* Lead-in callout (the > **...** at start of each section) — NEUTRAL by design.
+     Green is reserved for to-discuss content (.note-question, .q-grid, §12 table). */
   .leadin {
-    background: var(--accent-soft);
-    border-left: 3px solid var(--accent);
+    background: var(--surface);
+    border-left: 3px solid var(--border);
     border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
     padding: 1rem 1.25rem;
     margin-bottom: 1.6rem;
@@ -430,6 +432,105 @@
     line-height: 1.55;
   }
 
+  /* 3-column variant for role-grid (fixes orphan when 3 cards) */
+  .role-grid.role-grid-3 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  /* TBD card (Video, etc.) sits full-width with dashed border */
+  .role-card.role-tbd {
+    grid-column: 1 / -1;
+    border-style: dashed;
+    background: var(--bg);
+  }
+  .role-card.role-tbd .role-dot { background: var(--fg-subtle); }
+  .role-card.role-tbd .role-name { color: var(--fg-muted); }
+
+  /* Type card sub-line (Geist sans, smaller, the artefact description) */
+  .role-card .role-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--fg-subtle);
+    letter-spacing: 0.02em;
+    margin-top: -0.1rem;
+  }
+  .role-card .role-example {
+    font-style: italic;
+    color: var(--fg-muted);
+    font-size: 0.86rem;
+    line-height: 1.5;
+    border-top: 1px solid var(--hairline);
+    padding-top: 0.55rem;
+    margin-top: 0.15rem;
+  }
+
+  /* === OPTION CARDS (for §9 Platform options) === */
+  .option-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.85rem;
+    margin: 1rem 0 1.5rem;
+  }
+  .option-card {
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    padding: 1.2rem 1.35rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    transition: all 0.15s;
+  }
+  .option-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-sm);
+  }
+  .option-card .opt-head {
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .option-card .opt-name {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--fg);
+    letter-spacing: -0.005em;
+    margin-bottom: 0.2rem;
+  }
+  .option-card .opt-sub {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    color: var(--fg-subtle);
+    letter-spacing: 0.01em;
+  }
+  .option-card .opt-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .option-card .opt-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--fg-subtle);
+    font-weight: 500;
+  }
+  .option-card .opt-text {
+    font-size: 0.9rem;
+    line-height: 1.55;
+    color: var(--fg);
+  }
+  .option-card .opt-text.muted { color: var(--fg-muted); }
+  .option-card .opt-best {
+    margin-top: auto;
+    padding-top: 0.65rem;
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+  }
+  .option-card .opt-best .opt-label { color: var(--accent); }
+  .option-card .opt-best .opt-text { font-weight: 500; }
+
   /* Question card grid (for §3 Key questions) */
   .q-grid {
     display: grid;
@@ -547,9 +648,12 @@
     table.plan-table thead th, table.plan-table tbody td { padding: 0.65rem 0.7rem; }
     .leadin { padding: 0.85rem 1rem; font-size: 0.94rem; }
     .role-grid { grid-template-columns: 1fr; gap: 0.6rem; }
+    .role-grid.role-grid-3 { grid-template-columns: 1fr; }
     .role-card { padding: 0.9rem 1rem; }
     .q-grid { grid-template-columns: 1fr; gap: 0.5rem; }
     .q-card { padding: 0.8rem 1rem; }
+    .option-grid { grid-template-columns: 1fr; gap: 0.6rem; }
+    .option-card { padding: 1rem 1.1rem; }
   }
 </style>
 </head>
@@ -797,7 +901,7 @@
       <table class="plan-table">
         <thead>
           <tr>
-            <th></th>
+            <th>Lens</th>
             <th>"AI Club website" framing</th>
             <th>"Institutional knowledge layer" framing</th>
           </tr>
@@ -828,23 +932,47 @@
     <div class="section-num">§5</div>
     <h2>Content types</h2>
     <div class="leadin">Four core types, each with a distinct primary artefact. A fifth type (video) is an open question for discovery.</div>
-    <div class="plan-table-wrap">
-      <table class="plan-table">
-        <thead>
-          <tr>
-            <th>Type</th>
-            <th>Primary artefact</th>
-            <th>Example</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr><td><strong>How-to Guide</strong></td><td>The writing itself</td><td>"How I built the lecture pipeline"</td></tr>
-          <tr><td><strong>Tool</strong></td><td>A live URL + screenshot</td><td>"Pourfolio — share your real tennis stats"</td></tr>
-          <tr><td><strong>Skill</strong></td><td>A downloadable .md/.zip skill file</td><td><code>/evaluate</code> — design iteration via two agents</td></tr>
-          <tr><td><strong>Resource</strong></td><td>An external link + recommendation</td><td>A Dwarkesh podcast worth your hour</td></tr>
-          <tr><td><strong>Video?</strong> (TBD)</td><td>A recorded session</td><td>Workflow demos from AI Club LAN parties; faculty how-tos</td></tr>
-        </tbody>
-      </table>
+    <div class="role-grid">
+      <div class="role-card">
+        <div class="role-head">
+          <span class="role-dot"></span>
+          <span class="role-name">How-to Guide</span>
+        </div>
+        <div class="role-sub">The writing itself</div>
+        <div class="role-example">e.g. "How I built the lecture pipeline"</div>
+      </div>
+      <div class="role-card">
+        <div class="role-head">
+          <span class="role-dot"></span>
+          <span class="role-name">Tool</span>
+        </div>
+        <div class="role-sub">A live URL + screenshot</div>
+        <div class="role-example">e.g. "Elective Course Planner"</div>
+      </div>
+      <div class="role-card">
+        <div class="role-head">
+          <span class="role-dot"></span>
+          <span class="role-name">Skill</span>
+        </div>
+        <div class="role-sub">A downloadable .md/.zip skill file</div>
+        <div class="role-example">e.g. <code>/evaluate</code> — design iteration via two agents</div>
+      </div>
+      <div class="role-card">
+        <div class="role-head">
+          <span class="role-dot"></span>
+          <span class="role-name">Resource</span>
+        </div>
+        <div class="role-sub">An external link + recommendation</div>
+        <div class="role-example">e.g. a Dwarkesh podcast worth your hour</div>
+      </div>
+      <div class="role-card role-tbd">
+        <div class="role-head">
+          <span class="role-dot"></span>
+          <span class="role-name">Video? <span style="font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--fg-subtle);font-weight:400;letter-spacing:0.02em;">— TBD</span></span>
+        </div>
+        <div class="role-sub">A recorded session</div>
+        <div class="role-example">e.g. workflow demos from AI Club LAN parties; faculty how-tos</div>
+      </div>
     </div>
     <div class="note-card note-question"><strong>Open question:</strong> any other types we've missed?</div>
   </section>
@@ -911,7 +1039,7 @@
     </div>
 
     <div class="card-grid-label">Possible additions to consider</div>
-    <div class="role-grid">
+    <div class="role-grid role-grid-3">
       <div class="role-card role-additional">
         <div class="role-head">
           <span class="role-dot"></span>
@@ -969,43 +1097,79 @@
     <div class="section-num">§9</div>
     <h2>Platform options &amp; trade-offs</h2>
     <div class="leadin">Four realistic options for where the Hub lives. Each has different trade-offs across control, cost, INSEAD endorsement potential, and feature support — the right pick depends on the audience scope and ambition the AI Club agrees on.</div>
-    <div class="plan-table-wrap">
-      <table class="plan-table">
-        <thead>
-          <tr>
-            <th>Option</th>
-            <th>Pros</th>
-            <th>Cons</th>
-            <th>Best for</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>Custom-built</strong><br><span style="font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--fg-subtle);">Next.js + Supabase, own domain</span></td>
-            <td>Full control over UX, branding, data; supports all features in §8; persistent identity; portable</td>
-            <td>~6-8 weeks build effort; ongoing maintenance; founder-handover risk; need to provision auth + DB</td>
-            <td>Long-term institutional infrastructure</td>
-          </tr>
-          <tr>
-            <td><strong>LMS integration</strong><br><span style="font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--fg-subtle);">inside INSEAD's existing LMS</span></td>
-            <td>Already has INSEAD SSO; school-blessed by default; lives across cohorts; zero hosting cost</td>
-            <td>Constrained UX; admin gatekeeping; may not support all content types; brand-locked; harder to surface to non-students</td>
-            <td>Speed-to-launch with school endorsement</td>
-          </tr>
-          <tr>
-            <td><strong>GitHub Pages</strong><br><span style="font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--fg-subtle);">static site, public repo</span></td>
-            <td>Free hosting; transparent (open source); fast to ship; familiar to AI Club crowd</td>
-            <td>No native auth, comments, saves, or reactions; not INSEAD-branded; public-only by default; intimidating to non-technical users — alienates the AI-curious audience the Hub is meant to onboard</td>
-            <td>Quick proof of concept</td>
-          </tr>
-          <tr>
-            <td><strong>SaaS</strong><br><span style="font-family:'JetBrains Mono',monospace;font-size:0.74rem;color:var(--fg-subtle);">Notion / Substack / similar</span></td>
-            <td>Zero build effort; templated; immediate launch; low maintenance</td>
-            <td>Limited UX control; data lock-in; doesn't feel purpose-built; weak access controls</td>
-            <td>Concept testing before committing to a real build</td>
-          </tr>
-        </tbody>
-      </table>
+    <div class="option-grid">
+      <div class="option-card">
+        <div class="opt-head">
+          <div class="opt-name">Custom-built</div>
+          <div class="opt-sub">Next.js + Supabase, own domain</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-label">Pros</div>
+          <div class="opt-text">Full control over UX, branding, data; supports all features in §8; persistent identity; portable</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-label">Cons</div>
+          <div class="opt-text muted">~6-8 weeks build effort; ongoing maintenance; founder-handover risk; need to provision auth + DB</div>
+        </div>
+        <div class="opt-best">
+          <div class="opt-label">Best for</div>
+          <div class="opt-text">Long-term institutional infrastructure</div>
+        </div>
+      </div>
+      <div class="option-card">
+        <div class="opt-head">
+          <div class="opt-name">LMS integration</div>
+          <div class="opt-sub">Inside INSEAD's existing LMS</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-label">Pros</div>
+          <div class="opt-text">Already has INSEAD SSO; school-blessed by default; lives across cohorts; zero hosting cost</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-label">Cons</div>
+          <div class="opt-text muted">Constrained UX; admin gatekeeping; may not support all content types; brand-locked; harder to surface to non-students</div>
+        </div>
+        <div class="opt-best">
+          <div class="opt-label">Best for</div>
+          <div class="opt-text">Speed-to-launch with school endorsement</div>
+        </div>
+      </div>
+      <div class="option-card">
+        <div class="opt-head">
+          <div class="opt-name">GitHub Pages</div>
+          <div class="opt-sub">Static site, public repo</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-label">Pros</div>
+          <div class="opt-text">Free hosting; transparent (open source); fast to ship; familiar to AI Club crowd</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-label">Cons</div>
+          <div class="opt-text muted">No native auth, comments, saves, or reactions; not INSEAD-branded; public-only by default; intimidating to non-technical users — alienates the AI-curious audience the Hub is meant to onboard</div>
+        </div>
+        <div class="opt-best">
+          <div class="opt-label">Best for</div>
+          <div class="opt-text">Quick proof of concept</div>
+        </div>
+      </div>
+      <div class="option-card">
+        <div class="opt-head">
+          <div class="opt-name">SaaS</div>
+          <div class="opt-sub">Notion / Substack / similar</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-label">Pros</div>
+          <div class="opt-text">Zero build effort; templated; immediate launch; low maintenance</div>
+        </div>
+        <div class="opt-row">
+          <div class="opt-label">Cons</div>
+          <div class="opt-text muted">Limited UX control; data lock-in; doesn't feel purpose-built; weak access controls</div>
+        </div>
+        <div class="opt-best">
+          <div class="opt-label">Best for</div>
+          <div class="opt-text">Concept testing before committing to a real build</div>
+        </div>
+      </div>
     </div>
     <div class="note-card"><strong>Decision rule:</strong> the platform should match the audience scope and ambition the AI Club agrees on (see §12 Q3 for the discussion). Picking a platform without that anchor is how products end up serving the wrong audience.</div>
   </section>
@@ -1118,7 +1282,8 @@
   <!-- ========== STANDALONE: DISCUSSION QUESTIONS ========== -->
   <section class="standalone-section" id="s12">
     <div class="standalone-eyebrow">Discussion questions for the AI Club working session</div>
-    <h2 class="standalone-h2">§12 — Discussion questions</h2>
+    <div class="section-num">§12</div>
+    <h2 class="standalone-h2">Discussion questions</h2>
     <p class="standalone-sub">Standalone — these are the questions to take into the discovery session and resolve.</p>
     <div class="leadin">Key questions to discuss with the broader AI Club at the initial working session.</div>
     <div class="plan-table-wrap">
