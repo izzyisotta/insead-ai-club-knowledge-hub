@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>General Plan — INSEAD AI Club Knowledge Hub</title>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<script src="theme.js"></script>
+<style>
+  /* === PLAN-SPECIFIC LAYOUT === */
+  main.plan-main {
+    max-width: 940px;
+    padding: 2.5rem 1.75rem 6rem;
+  }
+
+  /* Hero */
+  .plan-hero {
+    margin-bottom: 4rem;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .plan-hero .doc-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+  }
+  .plan-hero .doc-eyebrow::before {
+    content: "";
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--accent);
+  }
+  .plan-hero h1 {
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    letter-spacing: -0.025em;
+    line-height: 1.08;
+    margin-bottom: 1.25rem;
+  }
+  .plan-hero .plan-intro {
+    font-size: 1.08rem;
+    color: var(--fg);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+    max-width: 720px;
+  }
+  .plan-hero .plan-meta {
+    font-size: 0.94rem;
+    color: var(--fg-muted);
+    line-height: 1.6;
+    max-width: 720px;
+  }
+
+  /* Section */
+  .plan-section {
+    margin-bottom: 4rem;
+  }
+  .plan-section .section-num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--accent);
+    margin-bottom: 0.5rem;
+  }
+  .plan-section h2 {
+    font-size: 1.5rem;
+    letter-spacing: -0.02em;
+    margin-bottom: 1.4rem;
+    line-height: 1.2;
+  }
+  .plan-section h3 {
+    font-size: 1.05rem;
+    font-weight: 500;
+    margin: 1.5rem 0 0.6rem;
+    color: var(--fg);
+  }
+  .plan-section p {
+    color: var(--fg);
+    line-height: 1.65;
+    margin-bottom: 1rem;
+    max-width: 760px;
+  }
+  .plan-section .muted {
+    color: var(--fg-muted);
+  }
+  .plan-section ul, .plan-section ol {
+    margin: 0 0 1.4em 1.4em;
+    color: var(--fg);
+    line-height: 1.65;
+  }
+  .plan-section li { margin-bottom: 0.4em; }
+  .plan-section li strong { color: var(--fg); }
+
+  /* Lead-in callout (the > **...** at start of each section) */
+  .leadin {
+    background: var(--accent-soft);
+    border-left: 3px solid var(--accent);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    padding: 1rem 1.25rem;
+    margin-bottom: 1.6rem;
+    font-size: 1rem;
+    line-height: 1.55;
+    color: var(--fg);
+    font-weight: 500;
+  }
+
+  /* Part divider — large visual break */
+  .part-divider {
+    margin: 5rem 0 4rem;
+    padding: 2.5rem 0;
+    border-top: 2px solid var(--accent);
+    border-bottom: 1px solid var(--hairline);
+    text-align: left;
+  }
+  .part-divider .part-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
+  .part-divider h2 {
+    font-size: 1.85rem;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.6rem;
+    color: var(--fg);
+  }
+  .part-divider p {
+    color: var(--fg-muted);
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.55;
+    max-width: 640px;
+    margin: 0;
+  }
+
+  /* Tables */
+  .plan-table-wrap {
+    overflow-x: auto;
+    margin: 1rem 0 1.5rem;
+    -webkit-overflow-scrolling: touch;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-md);
+    background: var(--bg-elevated);
+  }
+  table.plan-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+  table.plan-table thead th {
+    background: var(--surface);
+    color: var(--fg-muted);
+    font-family: 'JetBrains Mono', monospace;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    font-size: 0.72rem;
+    font-weight: 500;
+    text-align: left;
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+  }
+  table.plan-table tbody td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--hairline);
+    color: var(--fg);
+    vertical-align: top;
+  }
+  table.plan-table tbody tr:last-child td { border-bottom: none; }
+  table.plan-table tbody td strong { color: var(--fg); font-weight: 600; }
+  table.plan-table tbody td em { color: var(--fg-muted); font-style: italic; }
+  table.plan-table tbody td.row-label {
+    color: var(--accent);
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 500;
+    font-size: 0.82rem;
+    white-space: nowrap;
+  }
+  table.plan-table.kv-table tbody td:first-child {
+    color: var(--fg-muted);
+    font-weight: 500;
+    width: 30%;
+    background: var(--surface);
+    font-size: 0.86rem;
+  }
+  /* Storyline table — grouped by part, dividers only between parts */
+  table.plan-table.storyline-table tbody td {
+    border-bottom: none;
+    padding: 0.55rem 1rem;
+  }
+  table.plan-table.storyline-table tbody tr.part-start td {
+    border-top: 1px solid var(--border);
+  }
+  table.plan-table.storyline-table tbody tr.part-start:first-child td {
+    border-top: none;
+  }
+  table.plan-table.storyline-table tbody td[rowspan],
+  table.plan-table.storyline-table tbody tr.part-start td:first-child {
+    background: var(--surface);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    color: var(--accent);
+    font-weight: 500;
+    vertical-align: top;
+    padding-top: 0.7rem;
+  }
+  table.plan-table.storyline-table tbody td:last-child {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.8rem;
+    color: var(--fg-muted);
+    text-align: right;
+  }
+
+  /* Sub-block: standalone discussion questions section */
+  .standalone-section {
+    margin-top: 5rem;
+    padding-top: 3rem;
+    border-top: 2px solid var(--accent);
+  }
+  .standalone-section .standalone-eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--accent);
+    margin-bottom: 0.6rem;
+    font-weight: 500;
+  }
+  .standalone-section h2.standalone-h2 {
+    font-size: 1.85rem;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.6rem;
+    color: var(--fg);
+  }
+  .standalone-section .standalone-sub {
+    color: var(--fg-muted);
+    font-size: 1rem;
+    font-style: italic;
+    line-height: 1.55;
+    margin-bottom: 2.5rem;
+    max-width: 640px;
+  }
+
+  /* Note card — for "Sizing", "Implication", "Operating principle", "Sunset rule", etc. */
+  .note-card {
+    background: var(--surface);
+    border: 1px solid var(--hairline);
+    border-radius: var(--radius-md);
+    padding: 1rem 1.25rem;
+    margin: 1rem 0 1.5rem;
+    font-size: 0.94rem;
+    line-height: 1.6;
+    color: var(--fg);
+  }
+  .note-card strong { color: var(--fg); font-weight: 600; }
+
+  /* "See also" / appendix in muted block */
+  .see-also {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--hairline);
+  }
+  .see-also h3 {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--fg-muted);
+    margin-bottom: 1rem;
+    font-weight: 500;
+  }
+  .see-also ul {
+    list-style: none;
+    margin-left: 0;
+    color: var(--fg-muted);
+  }
+  .see-also li {
+    margin-bottom: 0.5rem;
+    font-size: 0.92rem;
+  }
+  .see-also li strong { color: var(--fg); }
+
+  /* Live-link inline in §8 */
+  .live-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    padding: 0.55rem 0.9rem;
+    border-radius: var(--radius-sm);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.82rem;
+    margin-top: 1rem;
+    border: 1px solid var(--accent);
+  }
+  .live-link:hover {
+    background: var(--accent);
+    color: var(--accent-fg);
+    text-decoration: none;
+  }
+
+  /* Plan TOC link sticky at top? — skip, keep it simple */
+
+  @media (max-width: 720px) {
+    main.plan-main { padding: 1.5rem 1rem 4rem; }
+    .plan-hero h1 { font-size: 1.7rem; }
+    .plan-hero .plan-intro { font-size: 1rem; }
+    .plan-section h2 { font-size: 1.25rem; }
+    .part-divider { margin: 3.5rem 0 2.5rem; padding: 1.75rem 0; }
+    .part-divider h2 { font-size: 1.4rem; }
+    .standalone-section { margin-top: 3.5rem; padding-top: 2rem; }
+    .standalone-section h2.standalone-h2 { font-size: 1.4rem; }
+    table.plan-table { font-size: 0.84rem; }
+    table.plan-table thead th, table.plan-table tbody td { padding: 0.65rem 0.7rem; }
+    .leadin { padding: 0.85rem 1rem; font-size: 0.94rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-banner">General Plan <span>v0.1 · for AI Club working session · 8 May 2026</span></div>
+
+<header class="site">
+  <div class="inner">
+    <a href="index.html" class="brand">
+      <span class="mark"></span>
+      INSEAD AI Club Knowledge Hub
+    </a>
+    <nav>
+      <a href="index.html">Mockup</a>
+      <a href="general-plan.html" class="active">General Plan</a>
+    </nav>
+    <div class="actions">
+      <button class="icon-btn theme-toggle" aria-label="Toggle theme">☾</button>
+    </div>
+  </div>
+</header>
+
+<main class="plan-main">
+
+  <!-- ========== HERO ========== -->
+  <section class="plan-hero">
+    <div class="doc-eyebrow">General Plan · pre-build discovery</div>
+    <h1>Knowledge Hub — General Plan</h1>
+    <p class="plan-intro">Key questions to answer at the AI Club working session before we commit to building.</p>
+    <p class="plan-meta">The <a href="https://izzyisotta.github.io/insead-ai-club-knowledge-hub/" target="_blank" rel="noopener">clickable mockup</a> serves as inspiration — something concrete to react to, not a finished spec. The questions in §11 are the ones we need to resolve together; everything else is current thinking, open to challenge.</p>
+  </section>
+
+  <!-- ========== STORYLINE ========== -->
+  <section class="plan-section">
+    <div class="section-num">Storyline</div>
+    <h2>The questions this answers, in order</h2>
+    <div class="plan-table-wrap">
+      <table class="plan-table storyline-table">
+        <thead>
+          <tr>
+            <th style="width:34%">Part</th>
+            <th>Question</th>
+            <th style="width:8%">Where</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="part-start">
+            <td><em>Top-line</em></td>
+            <td>What's the argument in one slide?</td>
+            <td>§1</td>
+          </tr>
+          <tr class="part-start">
+            <td rowspan="3"><strong>1. Problem &amp; stakeholders</strong></td>
+            <td>What problems does this solve?</td>
+            <td>§2</td>
+          </tr>
+          <tr><td>Who are the key stakeholders and what are their needs?</td><td>§3</td></tr>
+          <tr><td><em>(so what?)</em> → <strong>Strategic positioning</strong></td><td>§4</td></tr>
+          <tr class="part-start">
+            <td rowspan="4"><strong>2. Structure of platform</strong></td>
+            <td>What types of content can be shared?</td>
+            <td>§5</td>
+          </tr>
+          <tr><td>What categories of content can be shared?</td><td>§6</td></tr>
+          <tr><td>Who are the contributor types?</td><td>§7</td></tr>
+          <tr><td>What features have we built into the mockup?</td><td>§8</td></tr>
+          <tr class="part-start">
+            <td rowspan="2"><strong>3. Roadmap &amp; decisions</strong></td>
+            <td>What would success even mean?</td>
+            <td>§9</td>
+          </tr>
+          <tr><td>What's the phased roadmap?</td><td>§10</td></tr>
+          <tr class="part-start">
+            <td><strong>4. Discussion questions for AI Club</strong></td>
+            <td>What do we need to discuss?</td>
+            <td>§11</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ========== §1 ARGUMENT ========== -->
+  <section class="plan-section">
+    <div class="section-num">§1</div>
+    <h2>The argument in one slide</h2>
+    <div class="leadin">The Knowledge Hub is the institutional knowledge layer for INSEAD's AI ecosystem. Six stakeholder groups currently operate in parallel without crossover. The Hub is the meeting point. Build for the AI Club crowd first, then expand in four phases.</div>
+    <div class="plan-table-wrap">
+      <table class="plan-table kv-table">
+        <tbody>
+          <tr><td>Problem</td><td>Discoverability + persistence + hidden-use culture + cross-stream isolation (see §2)</td></tr>
+          <tr><td>Who it's for</td><td>Six INSEAD stakeholder groups currently isolated from each other (see §3)</td></tr>
+          <tr><td>Strategic hypothesis</td><td>A persistent, structured knowledge layer beats five chats and a mailing list, and is reframeable as institutional infrastructure rather than a club site (see §4)</td></tr>
+          <tr><td>Proposal</td><td>4-phase rollout: research → build basic platform → wider rollout → long-run additions (see §10)</td></tr>
+          <tr><td>Discussion questions for AI Club</td><td>Six open questions to take into the working session (see §11)</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ========== PART 1 DIVIDER ========== -->
+  <div class="part-divider">
+    <div class="part-eyebrow">Part 1</div>
+    <h2>Problem &amp; stakeholders</h2>
+    <p>Why this exists, who feels it, and how we should frame the answer.</p>
+  </div>
+
+  <!-- ========== §2 PROBLEM ========== -->
+  <section class="plan-section">
+    <div class="section-num">§2</div>
+    <h2>The problem we're solving</h2>
+    <div class="leadin">Four distinct pain points. Each has evidence, an existing workaround that doesn't work, and a cost of doing nothing. The Hub addresses all four; no single existing channel does. §3 then drills into how each of these pains lands on each stakeholder.</div>
+    <div class="plan-table-wrap">
+      <table class="plan-table">
+        <thead>
+          <tr>
+            <th>Pain point</th>
+            <th>Evidence</th>
+            <th>Current workaround</th>
+            <th>Cost of inaction</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Discoverability</strong></td>
+            <td>"I had no idea X was working on that" — heard in section chats monthly</td>
+            <td>Word-of-mouth; being in the right chat at the right time</td>
+            <td>Duplicated effort across cohort</td>
+          </tr>
+          <tr>
+            <td><strong>Persistence</strong></td>
+            <td>Workflows shared in chats are unfindable after ~1 week</td>
+            <td>Personal screenshots; DM the original sharer</td>
+            <td>Knowledge dies in scrollback; new cohorts re-invent</td>
+          </tr>
+          <tr>
+            <td><strong>Hidden-use culture</strong></td>
+            <td>"AI use at INSEAD feels like a dirty secret" (manifesto, verbatim)</td>
+            <td>Private DMs; vague language in class</td>
+            <td>Stigma persists; productive→automation jump stays psychological</td>
+          </tr>
+          <tr>
+            <td><strong>Cross-stream isolation</strong></td>
+            <td>Recent admin meeting confirmed students/faculty/admin don't see each other's AI activity</td>
+            <td>Ad-hoc emails; AI Club acts as broker but doesn't scale</td>
+            <td>School can't see its own ground-truth; missed connections compound</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note-card"><strong>Sizing (rough):</strong> if discoverability alone costs each student ~10 hours/term in duplicated effort (a conservative estimate), that's ~3,000 hours/term across the cohort. The Hub needs to recover ~10% of that to break even on the build cost alone.</div>
+  </section>
+
+  <!-- ========== §3 STAKEHOLDERS ========== -->
+  <section class="plan-section">
+    <div class="section-num">§3</div>
+    <h2>Stakeholders and their needs</h2>
+    <div class="leadin">The four problems above show up differently for each group. The Hub has to serve all six stakeholders with one product, or it ends up serving the AI Club crowd and ignoring the rest — which is the failure mode it's meant to fix.</div>
+    <div class="plan-table-wrap">
+      <table class="plan-table">
+        <thead>
+          <tr>
+            <th>Stakeholder</th>
+            <th>Approx. size</th>
+            <th>Current state</th>
+            <th>Their pain</th>
+            <th>What they'd contribute</th>
+            <th>What they need from the Hub</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>AI-active students</strong> ("AI Club crowd")</td>
+            <td>~30-50 of 300</td>
+            <td>Building Claude Code workflows, vibecoded apps, skills, MCP setups; sharing in WhatsApp</td>
+            <td>Their work is invisible after a week of scrollback; no audience beyond the group chat</td>
+            <td>Most of the content (how-tos, skills, tools, videos)</td>
+            <td>Platform to discuss &amp; share ideas</td>
+          </tr>
+          <tr>
+            <td><strong>AI-curious students</strong></td>
+            <td>~150-200 of 300</td>
+            <td>Want to start but don't know where; intimidated by the AI-active crowd's pace</td>
+            <td>No on-ramp; not in chats; don't know who to ask</td>
+            <td>Audience + occasional first-attempt posts</td>
+            <td>Beginner content, templates, inspiration, knowing which people to reach out to</td>
+          </tr>
+          <tr>
+            <td><strong>Faculty teaching with AI</strong></td>
+            <td>~10-20</td>
+            <td>Experimenting privately; some integration in classes</td>
+            <td>No idea what students are doing with AI; can't reference student work</td>
+            <td>Course-related posts, prompts they use, cautions</td>
+            <td>Visibility into student practice; teaching-relevant content, <em><strong>sharing teaching ideas with each other - TBD?</strong></em></td>
+          </tr>
+          <tr>
+            <td><strong>Admin / AI strategy</strong></td>
+            <td>~3-5</td>
+            <td>Building the school's AI strategy; need ground-truth on adoption</td>
+            <td>No data on what students are doing; the AI Club is opaque to them</td>
+            <td>Sponsorship, mailing list integration, possibly hosting, <em><strong>Faculty content about how to use AI at INSEAD - TBD how big a component this is</strong></em></td>
+            <td>A canonical reference for "what's happening with AI at INSEAD"</td>
+          </tr>
+          <tr>
+            <td><strong>Faculty doing AI research</strong> (TBD)</td>
+            <td>~5-15</td>
+            <td>Research published in journals, invisible to students</td>
+            <td>Their work doesn't reach the cohort; no student channel for dissemination</td>
+            <td>Research summaries, paper recommendations, calls for collaborators</td>
+            <td>A way to reach the cohort directly</td>
+          </tr>
+          <tr>
+            <td><strong>Alumni</strong> (TBD)</td>
+            <td>??</td>
+            <td>Disconnected from current student practice; some AI-active in their own work</td>
+            <td>No way to plug in; no ongoing tie to the school's AI conversation</td>
+            <td>Possibly: senior-perspective posts, hiring signals, mentorship</td>
+            <td>Decide in discovery — likely out of scope for v1</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note-card"><strong>Key insight:</strong> the AI-active students are 10-15% of the school but currently absorb 100% of the AI Club's product attention. The remaining 85% (curious students + faculty + admin) are an audience the Hub could uniquely serve and currently doesn't have a channel.</div>
+    <h3>Key questions</h3>
+    <ol>
+      <li>Do we use this as a platform for faculty to share their teaching methodology &amp; insights with each other?</li>
+      <li>How big a role does INSEAD official content for students play here? Should it be included or is this a separate channel (LMS, INSEAD courses, etc.)</li>
+      <li>What role do AI research faculty play? (/ is there anyone except Johannes)</li>
+      <li>What role should alumni play?</li>
+    </ol>
+  </section>
+
+  <!-- ========== §4 STRATEGIC POSITIONING ========== -->
+  <section class="plan-section">
+    <div class="section-num">§4</div>
+    <h2>Strategic positioning to get stakeholder buy-in</h2>
+    <div class="leadin">"AI Club website" and "institutional knowledge layer" are the same artefact viewed through different lenses. The second lens unlocks a much bigger audience, a credible school partnership, and different platform decisions. We should build for the second.</div>
+    <div class="plan-table-wrap">
+      <table class="plan-table">
+        <thead>
+          <tr>
+            <th></th>
+            <th>"AI Club website" framing</th>
+            <th>"Institutional knowledge layer" framing</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Who it's for</strong></td><td>The 30-50 AI-active students</td><td>All six stakeholder groups (~250+)</td></tr>
+          <tr><td><strong>What it does</strong></td><td>Hosts workflow writeups</td><td>Captures how the school's AI ecosystem actually operates</td></tr>
+          <tr><td><strong>Success metric</strong></td><td>Posts/week from club members</td><td>Cross-stream interactions; cited by school in official docs</td></tr>
+          <tr><td><strong>School posture</strong></td><td>Tolerated student project</td><td>Endorseable institutional asset</td></tr>
+          <tr><td><strong>Funding model</strong></td><td>Personal funds / club budget</td><td>School line item by Year 2</td></tr>
+          <tr><td><strong>Lifespan</strong></td><td>Until current cohort graduates</td><td>Multi-cohort; permanent infrastructure</td></tr>
+          <tr><td><strong>Platform requirements</strong></td><td>Lightweight CMS, fast to ship</td><td>Persistent identity, stable URL, archivable, SSO-friendly</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note-card"><strong>Implication:</strong> if we accept the second framing, the platform decision shifts. A static site on GitHub answers the first framing. The second pushes us toward Next.js + Supabase with proper auth, RLS, and an audit trail (which is what the Architecture doc already lands on).</div>
+  </section>
+
+  <!-- ========== PART 2 DIVIDER ========== -->
+  <div class="part-divider">
+    <div class="part-eyebrow">Part 2</div>
+    <h2>Structure of platform</h2>
+    <p>What gets posted, how it's organised, who posts under what label, and what features the mockup already demonstrates.</p>
+  </div>
+
+  <!-- ========== §5 CONTENT TYPES ========== -->
+  <section class="plan-section">
+    <div class="section-num">§5</div>
+    <h2>Content types</h2>
+    <div class="leadin">Four core types, each with a distinct primary artefact. A fifth type (video) is an open question for discovery.</div>
+    <div class="plan-table-wrap">
+      <table class="plan-table">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Primary artefact</th>
+            <th>Example</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>How-to Guide</strong></td><td>The writing itself</td><td>"How I built the lecture pipeline"</td></tr>
+          <tr><td><strong>Tool</strong></td><td>A live URL + screenshot</td><td>"Pourfolio — share your real tennis stats"</td></tr>
+          <tr><td><strong>Skill</strong></td><td>A downloadable .md/.zip skill file</td><td><code>/evaluate</code> — design iteration via two agents</td></tr>
+          <tr><td><strong>Resource</strong></td><td>An external link + recommendation</td><td>A Dwarkesh podcast worth your hour</td></tr>
+          <tr><td><strong>Video?</strong> (TBD)</td><td>A recorded session</td><td>Workflow demos from AI Club LAN parties; faculty how-tos</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note-card"><strong>Open questions:</strong> does Video become a fifth type, or do videos embed in How-to Guides? Are there enough videos to justify their own type today?</div>
+  </section>
+
+  <!-- ========== §6 CONTENT CATEGORIES ========== -->
+  <section class="plan-section">
+    <div class="section-num">§6</div>
+    <h2>Content categories</h2>
+    <div class="leadin">Four top-level categories, goal-oriented (what you're trying to do) rather than tool-oriented (what you're using). A faculty/research category is an open question for discovery.</div>
+    <div class="plan-table-wrap">
+      <table class="plan-table">
+        <thead>
+          <tr>
+            <th>Category</th>
+            <th>What lives here</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Workflow Automation</strong></td><td>Automating real INSEAD / life stuff (Canvas sync, lecture pipelines, scheduling)</td></tr>
+          <tr><td><strong>Building Apps</strong></td><td>Vibecoded tools, sites, side projects shipped</td></tr>
+          <tr><td><strong>Agents &amp; Iteration</strong></td><td>Multi-agent setups, evaluate loops, prompting patterns, debugging tactics</td></tr>
+          <tr><td><strong>General Config</strong></td><td>Making Claude Code more powerful (MCP servers, hooks, plugins, settings)</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <h3>Open questions</h3>
+    <ul>
+      <li>Should "Faculty / Teaching" be its own category if faculty post in Phase 4, or do their posts fit under the existing four?</li>
+      <li>Do we want a <strong>Research</strong> category for AI research happening at INSEAD (Phase 4)?</li>
+      <li>How does the IA hold up when content scope expands beyond the AI Club crowd?</li>
+    </ul>
+  </section>
+
+  <!-- ========== §7 CONTRIBUTOR TYPES ========== -->
+  <section class="plan-section">
+    <div class="section-num">§7</div>
+    <h2>Contributor types</h2>
+    <div class="leadin">Each post has an author with a role label shown next to their name (in the people grid + on post bylines). Core types are derived from the stakeholder groups in §3, flattened where the platform doesn't need the distinction.</div>
+    <h3>Core types</h3>
+    <ul>
+      <li><strong>Student</strong> — current INSEAD MBA / MIM student. Default for most contributors. Covers both AI-active and AI-curious.</li>
+      <li><strong>AI Club</strong> — student in an officer / admin role. Overlay on Student (shown as second tag, e.g. "26D · Section E06 · AI Club founder").</li>
+      <li><strong>Faculty</strong> — teaching staff.</li>
+      <li><strong>Admin / Staff</strong> — INSEAD non-academic staff (AI strategy, IT, comms).</li>
+    </ul>
+    <h3>Possible additions to consider</h3>
+    <ul>
+      <li><strong>AI Champion</strong> — Adèle's program of designated AI-savvy faculty/staff. Could be its own role, or an overlay on Faculty/Admin.</li>
+      <li><strong>Guest</strong> — external invited contributor (visiting speaker, industry friend, partner-school student). Useful if we ever do a "guest post" feature.</li>
+      <li><strong>Industry partner / sponsor</strong> — only relevant if we accept sponsored content. Currently scoped out per Operations.md.</li>
+    </ul>
+    <div class="note-card"><strong>Open question:</strong> is "AI Club" a contributor type or just a profile tag on a Student? In the mockup it's used as a role label. Could go either way — flag for discovery.</div>
+  </section>
+
+  <!-- ========== §8 FEATURES IN MOCKUP ========== -->
+  <section class="plan-section">
+    <div class="section-num">§8</div>
+    <h2>Features built into the mockup</h2>
+    <div class="leadin">Eight feature areas already demonstrated in the clickable mockup. Mockup-only items work via localStorage; production stack adds real auth, DB persistence, moderation, and search per Architecture and Operations.</div>
+    <div class="plan-table-wrap">
+      <table class="plan-table">
+        <thead>
+          <tr>
+            <th>Area</th>
+            <th>Components in the mockup</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td><strong>Shell</strong></td><td>Top nav (Feed · People · Saved · Submit) · brand mark · sign-in stub · search icon stub · light/dark theme toggle · mobile responsive</td></tr>
+          <tr><td><strong>Feed</strong></td><td>Chronological post list · filter chips (category · content type)</td></tr>
+          <tr><td><strong>Featured rail</strong></td><td>"Recommended by AI Club" — admin-curated, max 3 · ★ marker on cards across feed and profiles</td></tr>
+          <tr><td><strong>Posting</strong></td><td>Submit page with 4-type segmented control (How-to · Tool · Skill · Resource) · per-type form fields</td></tr>
+          <tr><td><strong>Post pages</strong></td><td>Distinct layout per content type · comment thread</td></tr>
+          <tr><td><strong>People</strong></td><td>Grid of cards (avatar · name · role tag · bio · contribution breakdown · ★ count) · individual profile pages</td></tr>
+          <tr><td><strong>Saves</strong></td><td>Save toggle on cards · "Saved" page (localStorage in mockup)</td></tr>
+          <tr><td><strong>Visual identity</strong></td><td>Fontainebleau green palette · Geist sans · JetBrains Mono accent</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <a class="live-link" href="https://izzyisotta.github.io/insead-ai-club-knowledge-hub/" target="_blank" rel="noopener">→ Live mockup at izzyisotta.github.io/insead-ai-club-knowledge-hub</a>
+    <div class="note-card"><strong>Out of mockup, in production:</strong> Google + magic-link auth · DB-backed posts / comments / saves · flag-and-review moderation · audit log · email digests · search.</div>
+  </section>
+
+  <!-- ========== PART 3 DIVIDER ========== -->
+  <div class="part-divider">
+    <div class="part-eyebrow">Part 3</div>
+    <h2>Roadmap &amp; decisions</h2>
+    <p>How we know it's working, how we sequence the build, what we're deciding by when.</p>
+  </div>
+
+  <!-- ========== §9 SUCCESS DEBATE ========== -->
+  <section class="plan-section">
+    <div class="section-num">§9</div>
+    <h2>What would success even mean? — three positions</h2>
+    <div class="leadin">There's no agreed answer pre-discovery. Each position implies different metrics, different audiences, different sunset rules. Pick one (or define a hybrid) in the discovery session.</div>
+    <div class="plan-table-wrap">
+      <table class="plan-table">
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th>"Success means..."</th>
+            <th>What we'd measure</th>
+            <th>Sunset trigger if missed</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>A. Substrate works</strong></td>
+            <td>The AI Club crowd reliably writes things up</td>
+            <td>30+ contributors, 5+ posts/week</td>
+            <td>&lt;15 contributors at 6 months</td>
+          </tr>
+          <tr>
+            <td><strong>B. Behaviour change</strong></td>
+            <td>Cohort thinks "look on the Hub" before asking around</td>
+            <td>First-look behaviour; references in chats</td>
+            <td>Zero references at 6 months</td>
+          </tr>
+          <tr>
+            <td><strong>C. Institutional asset</strong></td>
+            <td>School cites the Hub as canonical AI reference</td>
+            <td>At least one citation; faculty engagement</td>
+            <td>Zero citations by Phase 3</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note-card"><strong>Plausible sequence:</strong> A → B → C. Phase 2 hits A. Phase 3 starts hitting B. Phase 4 hits C. <strong>If A doesn't land, B and C are unreachable</strong> — so Phase 2 is the only one that can fail us out of the project.</div>
+    <div class="note-card"><strong>Sunset rule (operational):</strong> if A's threshold fires by 6 months post-launch, site goes read-only with archived banner. Posts stay readable. Don't let it limp on.</div>
+  </section>
+
+  <!-- ========== §10 ROADMAP ========== -->
+  <section class="plan-section">
+    <div class="section-num">§10</div>
+    <h2>Phased roadmap</h2>
+    <div class="leadin">Research first, then build for engaged users, then expand. Each phase has a clear "ready to move" trigger; we don't progress until the prior phase has worked.</div>
+    <div class="plan-table-wrap">
+      <table class="plan-table">
+        <thead>
+          <tr>
+            <th style="width:30%">Phase</th>
+            <th>What happens</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>1a. Research &amp; plan</strong></td>
+            <td>Interview each stakeholder type for use cases; secure engaged faculty buy-in (Adèle / AI Champions); run discovery session</td>
+          </tr>
+          <tr>
+            <td><strong>1b. Decide the practicals</strong></td>
+            <td>Pose &amp; answer:
+              <ul style="margin: 0.4rem 0 0 1.2rem;">
+                <li>platform (e.g. own platform vs LMS)</li>
+                <li>domain</li>
+                <li>hosting</li>
+                <li>ownership / continuity</li>
+                <li>INSEAD official involvement</li>
+                <li>access model</li>
+                <li>funding</li>
+                <li>moderation</li>
+                <li>reactions &amp; feed sort</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>2. Build basic platform</strong></td>
+            <td>Build version 1; engaged AI users populate it; iterate from feedback</td>
+          </tr>
+          <tr>
+            <td><strong>3. Wider student rollout</strong></td>
+            <td>Market to and invite wider student body</td>
+          </tr>
+          <tr>
+            <td><strong>4. Long-run additions</strong></td>
+            <td>Everything mentioned earlier: faculty posting, alumni network, partner schools, Singapore campus, possibly research category, possibly video as 5th type</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="note-card"><strong>Operating principle:</strong> don't try to build for everyone in v1. v1 is for the AI Club crowd. The product earns the right to expand.</div>
+  </section>
+
+  <!-- ========== STANDALONE: DISCUSSION QUESTIONS ========== -->
+  <section class="standalone-section">
+    <div class="standalone-eyebrow">Discussion questions for the AI Club working session</div>
+    <h2 class="standalone-h2">§11 — Discussion questions</h2>
+    <p class="standalone-sub">Standalone — these are the questions to take into the discovery session and resolve.</p>
+    <div class="leadin">Key questions to discuss with the broader AI Club at the initial working session.</div>
+    <div class="plan-table-wrap">
+      <table class="plan-table">
+        <thead>
+          <tr>
+            <th style="width:6%">#</th>
+            <th>Question</th>
+            <th>Options</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="row-label">Q1</td>
+            <td>Who is the primary audience? Should it be staggered/ phased?</td>
+            <td>(a) AI Club only (b) All INSEAD students (c) Including faculty (d) Including alumni</td>
+          </tr>
+          <tr>
+            <td class="row-label">Q2</td>
+            <td>Use cases? Primarily to share content or anything else big we've missed?</td>
+            <td><em>open ended</em></td>
+          </tr>
+          <tr>
+            <td class="row-label">Q3</td>
+            <td>What platform do we put this on?</td>
+            <td>(a) From-scratch own platform (b) incorporate on LMS (c) GitHub (d) Other?</td>
+          </tr>
+          <tr>
+            <td class="row-label">Q4</td>
+            <td>Level of faculty involvement</td>
+            <td>(a) Student-run, school-aware (b) Student-run, school-blessed (c) School-owned</td>
+          </tr>
+          <tr>
+            <td class="row-label">Q5</td>
+            <td>For content, are categories / types right? Any other use cases</td>
+            <td><em>open ended</em></td>
+          </tr>
+          <tr>
+            <td class="row-label">Q6</td>
+            <td>Discussion of roadmap/ timelines/ ownership</td>
+            <td><em>open ended</em></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ========== SEE ALSO ========== -->
+  <div class="see-also">
+    <h3>See also</h3>
+    <ul>
+      <li><strong>Knowledge Hub – Overview</strong> — current decisions and status (to be updated post-discovery)</li>
+      <li><strong>Knowledge Hub – Build Plan</strong> — phased roadmap for after discovery green-lights</li>
+      <li><strong>Knowledge Hub – Architecture</strong> — technical decisions</li>
+      <li><strong>Knowledge Hub – Operations</strong> — auth, privacy, governance</li>
+      <li><strong>AI Club 26D Manifesto</strong> — the underlying mission this serves</li>
+      <li><strong>INSEAD AI Club – Field Notes (Writeup for Ethan Mollick)</strong> — what's worked so far</li>
+    </ul>
+  </div>
+
+</main>
+
+<footer class="site">
+  INSEAD AI Club Knowledge Hub · General Plan v0.1 · Cohort 26D
+</footer>
+
+</body>
+</html>
